@@ -1,6 +1,7 @@
 package net.ion.radon.aclient;
 
 import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
@@ -29,7 +30,9 @@ public class TestSerialRequest extends TestCase {
 	@Override
 	protected void setUp() throws Exception {
 		super.setUp();
-		aradon = AradonTester.create().register("", "/serial", SerialLet.class).getAradon() ;
+		aradon = AradonTester.create()
+			.register("", "/serial", SerialLet.class)
+			.register("", "/implict", ImplictLet.class).getAradon() ;
 		aradon.startServer(9000) ;
 	}
 	
@@ -39,16 +42,12 @@ public class TestSerialRequest extends TestCase {
 		super.tearDown();
 	}
 	
-	public void testCreateRequest() throws Exception {
+	public void testRawRequest() throws Exception {
 		NewClient nc = NewClient.create() ;
-		ByteArrayOutputStream bout = new ByteArrayOutputStream();
-		ObjectOutputStream output = new ObjectOutputStream(bout) ; 
-		output.writeObject(Employee.create()) ;
-		output.close() ;
-		byte[] data = bout.toByteArray() ;
+		byte[] data = toByte(Employee.create());
 		Request req = nc.requestBuilder(Method.POST, "http://localhost:9000/serial")
-			.setBody(data)
 			.addHeader("Content-Type", "application/x-java-serialized-object")
+			.setBody(data)
 			.build() ;
 		
 		Response res = nc.prepareRequest(req).execute().get() ;
@@ -59,6 +58,24 @@ public class TestSerialRequest extends TestCase {
 		Employee emp = Employee.class.cast(oinput.readObject()) ;
 		
 		assertEquals(21, emp.getAge()) ;
+	}
+	
+	public void testImplictSerialObject() throws Exception {
+		NewClient nc = NewClient.create() ;
+		ISerialAsyncRequest request = nc.createSerialRequest("http://localhost:9000/implict") ;
+		List<String> names = new ArrayList<String>() ;
+		names.add("hero") ;
+		
+		List nameList = request.post(names, List.class).get() ;
+	}
+	
+	private byte[] toByte(Serializable obj) throws IOException {
+		ByteArrayOutputStream bout = new ByteArrayOutputStream();
+		ObjectOutputStream output = new ObjectOutputStream(bout) ; 
+		output.writeObject(obj) ;
+		output.close() ;
+		byte[] data = bout.toByteArray() ;
+		return data;
 	}
 	
 	public void testSerialRequest() throws Exception {
@@ -78,8 +95,19 @@ public class TestSerialRequest extends TestCase {
 		
 		assertEquals(20, emp.getAge()) ;
 	}
+
 	
 	
+}
+
+class ImplictLet extends AbstractServerResource {
+	
+	@Post
+	public ArrayList<String> addName(ArrayList<String> names){
+		ArrayList<String> result = new ArrayList<String>(names) ;
+		result.add("bleujin") ;
+		return result ;
+	}
 }
 
 class SerialLet extends AbstractServerResource {

@@ -6,12 +6,15 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import net.ion.framework.util.Debug;
 import net.ion.framework.util.IOUtil;
+import net.ion.radon.aclient.AsyncHandler.STATE;
 import net.ion.radon.aclient.Request.EntityWriter;
 import net.ion.radon.aclient.filter.FilterContext;
 import net.ion.radon.aclient.filter.FilterException;
@@ -345,7 +348,7 @@ class HttpSerialRequest implements ISerialAsyncRequest {
 
 	public HttpSerialRequest(NewClient newClient, String fullPath) {
 		this.client = newClient;
-		builder.setUrl(fullPath).addHeader("Content-Type", "application/x-java-serialized-object");
+		builder.setUrl(fullPath);
 	}
 
 	public RequestBuilder builder() {
@@ -371,14 +374,15 @@ class HttpSerialRequest implements ISerialAsyncRequest {
 
 	public <T, V> ListenableFuture<V> handle(Method method, T arg, final Class<? extends V> clz) {
 		builder.setMethod(method);
+		builder.addHeader("Content-Type", "application/x-java-serialized-object") ;
 
 		try {
 			if (!(method.equals(Method.GET) || method.equals(Method.DELETE) || method.equals(Method.HEAD))) {
 				ByteArrayOutputStream bout = new ByteArrayOutputStream();
 				ObjectOutputStream output = new ObjectOutputStream(bout);
-				output.writeObject(Employee.create());
-				output.close();
+				output.writeObject(arg);
 				byte[] data = bout.toByteArray();
+				output.close();
 				builder.setBody(data);
 			}
 		} catch (IOException ex) {
@@ -386,21 +390,22 @@ class HttpSerialRequest implements ISerialAsyncRequest {
 		}
 
 		Request req = builder.build();
-
 		try {
-			ListenableFuture<V> future = client.prepareRequest(req).execute(new AsyncCompletionHandler<V>() {
-				public V onCompleted(Response response) throws Exception {
+			AsyncHandler<V> handler = new AsyncCompletionHandler<V>(){
+				public V onCompleted(Response response) throws Exception{
 					Status st = Status.valueOf(response.getStatusCode());
+					
 					if (!st.isSuccess())
 						throw new ResourceException(st, response.getTextBody());
 
-					byte[] bodyBuf = IOUtil.toByteArray(response.getBodyAsStream());
-					ObjectInputStream oinput = new ObjectInputStream(new ByteArrayInputStream(bodyBuf));
+					ObjectInputStream oinput = new ObjectInputStream(response.getBodyAsStream());
 					V result = clz.cast(oinput.readObject());
 
 					return result;
 				}
-			});
+			} ;
+			
+			ListenableFuture<V> future = client.prepareRequest(req).execute(handler);
 			return future;
 		} catch (IOException ex) {
 			throw new ResourceException(Status.SERVER_ERROR_INTERNAL, ex.getMessage()) ;
