@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import org.restlet.data.Status;
+
 public interface Response {
 
 	public int getStatusCode();

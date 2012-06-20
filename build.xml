@@ -50,7 +50,7 @@
 	</target>
 	
 	
-	<target name="publish" depends="test_aradonclient">
+	<target name="publish">
 		<delete file="publish/aclient_${version.number}.${build.number}.jar"></delete>
 		<jar destfile="publish/aclient_${version.number}.${build.number}.jar">
 			<manifest>
@@ -58,7 +58,7 @@
 			  <attribute name="Created-By" value="${user.name}"/>
 			  <!-- attribute name="Main-Class" value="${manifest.main.class}"/ -->
 			  <attribute name="Built-Date" value="${TODAY_MY}" />
-			  <attribute name="Class-Path" value="${manifes.classpath}" />
+			  <attribute name="Class-Path" value="${manifest.classpath}" />
 			  <section name="common">
 			    <attribute name="Specification-Title" value="i-on aradon client"/>
 			    <attribute name="Specification-Version" value="${version.number}.${build.number}"/>
@@ -70,4 +70,9 @@
 	</target>
 	
 
+	<target name="copy" depends="publish">
+		<echo>Copy to MongoSearch</echo>
+		<copy file="publish/aclient_${version.number}.${build.number}.jar" todir="../MongoSearch/lib/" />
+	</target>
+	
 </project>

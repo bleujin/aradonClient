@@ -30,7 +30,7 @@ public class TestFirst extends TestCase{
 			
 			private StringBuilder builder = new StringBuilder() ;
 			public net.ion.radon.aclient.AsyncHandler.STATE onBodyPartReceived(HttpResponseBodyPart bodyPart) throws Exception {
-				builder.append(new String(bodyPart.getBodyPartBytes(), Charset.forName("UTF-8"))) ;
+				builder.append(new String(bodyPart.getBodyPartBytes(), "UTF-8")) ;
 				return STATE.CONTINUE;
 			}
 

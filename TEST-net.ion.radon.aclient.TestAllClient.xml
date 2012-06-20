@@ -1,0 +1,630 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuite errors="0" failures="0" hostname="bleujin-SV" name="net.ion.radon.aclient.TestAllClient" tests="26" time="27.305" timestamp="2012-06-20T05:19:35">
+  <properties>
+    <property name="java.vendor" value="Sun Microsystems Inc." />
+    <property name="sun.java.launcher" value="SUN_STANDARD" />
+    <property name="eclipse.pdebuild.templates" value="/D:/eclipse/plugins/org.eclipse.pde.build_3.5.2.R35x_20100114/templates/" />
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers" />
+    <property name="os.name" value="Windows 7" />
+    <property name="sun.boot.class.path" value="C:\java\jdk6_27\jre\lib\resources.jar;C:\java\jdk6_27\jre\lib\rt.jar;C:\java\jdk6_27\jre\lib\sunrsasign.jar;C:\java\jdk6_27\jre\lib\jsse.jar;C:\java\jdk6_27\jre\lib\jce.jar;C:\java\jdk6_27\jre\lib\charsets.jar;C:\java\jdk6_27\jre\lib\modules\jdk.boot.jar;C:\java\jdk6_27\jre\classes" />
+    <property name="TODAY" value="June 20 2012" />
+    <property name="build.number" value="1" />
+    <property name="sun.desktop" value="windows" />
+    <property name="java.vm.specification.vendor" value="Sun Microsystems Inc." />
+    <property name="ant.home" value="D:\eclipse\plugins\org.apache.ant_1.7.1.v20090120-1145" />
+    <property name="java.runtime.version" value="1.6.0_27-b07" />
+    <property name="version.number" value="0" />
+    <property name="user.name" value="bleujin" />
+    <property name="ant.file.Jar Publish" value="D:\github\aradonClient\build.xml" />
+    <property name="publishDir" value="./publish" />
+    <property name="user.language" value="ko" />
+    <property name="sun.boot.library.path" value="C:\java\jdk6_27\jre\bin" />
+    <property name="manifest.main.class" value="" />
+    <property name="ant.project.name" value="Jar Publish" />
+    <property name="DSTAMP" value="20120620" />
+    <property name="java.version" value="1.6.0_27" />
+    <property name="user.timezone" value="" />
+    <property name="sun.arch.data.model" value="64" />
+    <property name="java.endorsed.dirs" value="C:\java\jdk6_27\jre\lib\endorsed" />
+    <property name="sun.cpu.isalist" value="amd64" />
+    <property name="sun.jnu.encoding" value="MS949" />
+    <property name="file.encoding.pkg" value="sun.io" />
+    <property name="file.separator" value="\" />
+    <property name="java.specification.name" value="Java Platform API Specification" />
+    <property name="java.class.version" value="50.0" />
+    <property name="user.country" value="KR" />
+    <property name="java.home" value="C:\java\jdk6_27\jre" />
+    <property name="java.vm.info" value="mixed mode" />
+    <property name="ant.file" value="D:\github\aradonClient\build.xml" />
+    <property name="os.version" value="6.1" />
+    <property name="test.reports" value="./resource/report" />
+    <property name="path.separator" value=";" />
+    <property name="java.vm.version" value="20.2-b06" />
+    <property name="user.variant" value="" />
+    <property name="ant.library.dir" value="D:\eclipse\plugins\org.apache.ant_1.7.1.v20090120-1145\lib" />
+    <property name="manifest.classpath" value="./" />
+    <property name="java.awt.printerjob" value="sun.awt.windows.WPrinterJob" />
+    <property name="sun.io.unicode.encoding" value="UnicodeLittle" />
+    <property name="awt.toolkit" value="sun.awt.windows.WToolkit" />
+    <property name="eclipse.pdebuild.scripts" value="/D:/eclipse/plugins/org.eclipse.pde.build_3.5.2.R35x_20100114/scripts/" />
+    <property name="user.home" value="C:\Users\bleujin" />
+    <property name="java.specification.vendor" value="Sun Microsystems Inc." />
+    <property name="binDir" value="./bin" />
+    <property name="java.library.path" value="C:\java\jdk6_27\jre\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:/Program Files (x86)/Java/jre6/bin/client;C:/Program Files (x86)/Java/jre6/bin;C:\Ruby\bin;C:\Program Files\Common Files\Microsoft Shared\Windows Live;C:\Program Files (x86)\Common Files\Microsoft Shared\Windows Live;C:\oracle\product\10.2.0\client_1\bin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Common Files\Roxio Shared\DLLShared\;C:\Program Files (x86)\Common Files\Roxio Shared\10.0\DLLShared\;C:\Program Files\MySQL\MySQL Server 5.5\bin;C:\Program Files (x86)\Windows Live\Shared;C:\Program Files\TortoiseSVN\bin;C:\Program Files (x86)\Git\cmd;C:\Program Files (x86)\QuickTime\QTSystem\;C:\java\jdk5_22\bin;C:\Ruby\bin;C:\Program Files\Common Files\Microsoft Shared\Windows Live;C:\Program Files (x86)\Common Files\Microsoft Shared\Windows Live;C:\oracle\product\10.2.0\client_1\bin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Common Files\Roxio Shared\DLLShared\;C:\Program Files (x86)\Common Files\Roxio Shared\10.0\DLLShared\;C:\Program Files\MySQL\MySQL Server 5.5\bin;C:\Program Files (x86)\Windows Live\Shared;C:\Program Files\TortoiseSVN\bin;C:\Program Files (x86)\Git\cmd;C:\Program Files (x86)\QuickTime\QTSystem\;C:\Users\bleujin\ec2home\bin;C:\Program Files (x86)\Mozilla Firefox;." />
+    <property name="java.vendor.url" value="http://java.sun.com/" />
+    <property name="java.vm.vendor" value="Sun Microsystems Inc." />
+    <property name="java.runtime.name" value="Java(TM) SE Runtime Environment" />
+    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner net.ion.radon.aclient.TestAllClient filtertrace=true haltOnError=false haltOnFailure=true formatter=org.apache.tools.ant.taskdefs.optional.junit.SummaryJUnitResultFormatter showoutput=false outputtoformatters=true logtestlistenerevents=true formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,D:\github\aradonClient\TEST-net.ion.radon.aclient.TestAllClient.xml crashfile=D:\github\aradonClient\junitvmwatcher4621736030409581907.properties propsfile=D:\github\aradonClient\junit8306530956108372314.properties" />
+    <property name="java.class.path" value="D:\github\aradonClient\bin;D:\github\aradonClient\lib\apache_extend_fat.jar;D:\github\aradonClient\lib\aradon_0.7.jar;D:\github\aradonClient\lib\commons-vfs2-2.0.jar;D:\github\aradonClient\lib\iframework_2.3.jar;D:\github\aradonClient\lib\junit.jar;D:\github\aradonClient\lib\netty-3.4.6.Final.jar;D:\github\aradonClient\lib\rest_fat.jar;D:\github\aradonClient;C:\Program Files (x86)\Java\jre6\lib\ext\QTJava.zip;D:\eclipse\plugins\org.apache.ant_1.7.1.v20090120-1145\lib\ant-launcher.jar;D:\eclipse\plugins\org.apache.ant_1.7.1.v20090120-1145\lib\ant.jar;D:\eclipse\plugins\org.apache.ant_1.7.1.v20090120-1145\lib\ant-junit.jar" />
+    <property name="ant.version" value="Apache Ant version 1.7.1 compiled on June 27 2008" />
+    <property name="TSTAMP" value="1419" />
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification" />
+    <property name="java.vm.specification.version" value="1.0" />
+    <property name="sun.cpu.endian" value="little" />
+    <property name="sun.os.patch.level" value="" />
+    <property name="eclipse.pdebuild.home" value="/D:/eclipse/plugins/org.eclipse.pde.build_3.5.2.R35x_20100114/./" />
+    <property name="java.io.tmpdir" value="C:\Users\bleujin\AppData\Local\Temp\" />
+    <property name="java.vendor.url.bug" value="http://java.sun.com/cgi-bin/bugreport.cgi" />
+    <property name="os.arch" value="amd64" />
+    <property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment" />
+    <property name="java.ext.dirs" value="C:\java\jdk6_27\jre\lib\ext;C:\Windows\Sun\Java\lib\ext" />
+    <property name="user.dir" value="D:\github\aradonClient" />
+    <property name="line.separator" value="
+" />
+    <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM" />
+    <property name="basedir" value="D:\github\aradonClient" />
+    <property name="baseDir" value="." />
+    <property name="ant.java.version" value="1.6" />
+    <property name="TODAY_MY" value="06/20/2012 02:19" />
+    <property name="ant.core.lib" value="D:\eclipse\plugins\org.apache.ant_1.7.1.v20090120-1145\lib\ant.jar" />
+    <property name="file.encoding" value="MS949" />
+    <property name="java.specification.version" value="1.6" />
+  </properties>
+  <testcase classname="net.ion.radon.aclient.TestConfigureClient" name="testConfig" time="1.377" />
+  <testcase classname="net.ion.radon.aclient.TestConfigureClient" name="testLimitConnection" time="1.043" />
+  <testcase classname="net.ion.radon.aclient.TestCreateRequest" name="testSimple" time="1.198" />
+  <testcase classname="net.ion.radon.aclient.TestCreateRequest" name="testRequestBuilder" time="1.075" />
+  <testcase classname="net.ion.radon.aclient.TestCreateRequest" name="testRequestConfig" time="1.047" />
+  <testcase classname="net.ion.radon.aclient.TestCreateResponse" name="testCreateResponse" time="1.042" />
+  <testcase classname="net.ion.radon.aclient.TestCreateResponse" name="testCompletedHandler" time="1.065" />
+  <testcase classname="net.ion.radon.aclient.TestCreateResponse" name="testZeroByteCopy" time="1.059" />
+  <testcase classname="net.ion.radon.aclient.multipart.TestMultiPart" name="testUpload" time="1.089" />
+  <testcase classname="net.ion.radon.aclient.listener.TestTransfer" name="testUpload" time="1.043" />
+  <testcase classname="net.ion.radon.aclient.listener.TestTransfer" name="testTransferOrder" time="1.045" />
+  <testcase classname="net.ion.radon.aclient.filter.TestFilter" name="testThrottleRequestFilter" time="3.409" />
+  <testcase classname="net.ion.radon.aclient.filter.TestFilter" name="testResponseFilter" time="1.062" />
+  <testcase classname="net.ion.radon.aclient.auth.TestAuthentication" name="testBasic" time="1.07" />
+  <testcase classname="net.ion.radon.aclient.util.TestProxyUtils" name="testBasics" time="0.0030" />
+  <testcase classname="net.ion.radon.aclient.util.TestUTF8UrlCodec" name="testBasics" time="0.0" />
+  <testcase classname="net.ion.radon.aclient.util.TestUTF8UrlCodec" name="testHangul" time="0.0010" />
+  <testcase classname="net.ion.radon.aclient.webdav.TestWebDav" name="testProfind" time="1.129" />
+  <testcase classname="net.ion.radon.aclient.webdav.TestWebDav" name="testProfindNotExist" time="1.049" />
+  <testcase classname="net.ion.radon.aclient.webdav.TestWebDav" name="testMkDir" time="1.062" />
+  <testcase classname="net.ion.radon.aclient.webdav.TestWebDav" name="testOptions" time="1.046" />
+  <testcase classname="net.ion.radon.aclient.webdav.TestWebDav" name="testHead" time="1.037" />
+  <testcase classname="net.ion.radon.aclient.webdav.TestWebDav" name="testPut" time="1.048" />
+  <testcase classname="net.ion.radon.aclient.webdav.TestWebDav" name="testGet" time="1.069" />
+  <testcase classname="net.ion.radon.aclient.webdav.TestWebDav" name="testDelete" time="1.071" />
+  <testcase classname="net.ion.radon.aclient.webdav.TestWebDav" name="testCopy" time="1.096" />
+  <system-out><![CDATA[[ROOT loaded] by net.ion.radon.core.AradonConfig:initConfig[20120620-141935]
+[SECTION :  loaded] by net.ion.radon.core.Aradon:attach[20120620-141935]
+[SECTION : secure loaded] by net.ion.radon.core.Aradon:attach[20120620-141935]
+[SECTION : twitter loaded] by net.ion.radon.core.Aradon:attach[20120620-141935]
+[Bye....... Aradon] by net.ion.radon.core.Aradon:slayReleasable[20120620-141937]
+[End World.........] by net.ion.radon.core.Aradon:slayReleasable[20120620-141937]
+[ROOT loaded] by net.ion.radon.core.AradonConfig:initConfig[20120620-141937]
+[SECTION :  loaded] by net.ion.radon.core.Aradon:attach[20120620-141937]
+[SECTION : secure loaded] by net.ion.radon.core.Aradon:attach[20120620-141937]
+[SECTION : twitter loaded] by net.ion.radon.core.Aradon:attach[20120620-141937]
+[Bye....... Aradon] by net.ion.radon.core.Aradon:slayReleasable[20120620-141938]
+[End World.........] by net.ion.radon.core.Aradon:slayReleasable[20120620-141938]
+[ROOT loaded] by net.ion.radon.core.AradonConfig:initConfig[20120620-141938]
+[SECTION :  loaded] by net.ion.radon.core.Aradon:attach[20120620-141938]
+[SECTION : secure loaded] by net.ion.radon.core.Aradon:attach[20120620-141938]
+[SECTION : twitter loaded] by net.ion.radon.core.Aradon:attach[20120620-141938]
+[Bye....... Aradon] by net.ion.radon.core.Aradon:slayReleasable[20120620-141939]
+[End World.........] by net.ion.radon.core.Aradon:slayReleasable[20120620-141939]
+[ROOT loaded] by net.ion.radon.core.AradonConfig:initConfig[20120620-141939]
+[SECTION :  loaded] by net.ion.radon.core.Aradon:attach[20120620-141939]
+[SECTION : secure loaded] by net.ion.radon.core.Aradon:attach[20120620-141939]
+[SECTION : twitter loaded] by net.ion.radon.core.Aradon:attach[20120620-141939]
+[Bye....... Aradon] by net.ion.radon.core.Aradon:slayReleasable[20120620-141940]
+[End World.........] by net.ion.radon.core.Aradon:slayReleasable[20120620-141940]
+[ROOT loaded] by net.ion.radon.core.AradonConfig:initConfig[20120620-141940]
+[SECTION :  loaded] by net.ion.radon.core.Aradon:attach[20120620-141940]
+[SECTION : secure loaded] by net.ion.radon.core.Aradon:attach[20120620-141940]
+[SECTION : twitter loaded] by net.ion.radon.core.Aradon:attach[20120620-141940]
+[Bye....... Aradon] by net.ion.radon.core.Aradon:slayReleasable[20120620-141941]
+[End World.........] by net.ion.radon.core.Aradon:slayReleasable[20120620-141941]
+[ROOT loaded] by net.ion.radon.core.AradonConfig:initConfig[20120620-141941]
+[SECTION :  loaded] by net.ion.radon.core.Aradon:attach[20120620-141941]
+[SECTION : secure loaded] by net.ion.radon.core.Aradon:attach[20120620-141941]
+[SECTION : twitter loaded] by net.ion.radon.core.Aradon:attach[20120620-141941]
+[Bye....... Aradon] by net.ion.radon.core.Aradon:slayReleasable[20120620-141942]
+[End World.........] by net.ion.radon.core.Aradon:slayReleasable[20120620-141942]
+[ROOT loaded] by net.ion.radon.core.AradonConfig:initConfig[20120620-141942]
+[SECTION :  loaded] by net.ion.radon.core.Aradon:attach[20120620-141942]
+[SECTION : secure loaded] by net.ion.radon.core.Aradon:attach[20120620-141942]
+[SECTION : twitter loaded] by net.ion.radon.core.Aradon:attach[20120620-141942]
+[Bye....... Aradon] by net.ion.radon.core.Aradon:slayReleasable[20120620-141943]
+[End World.........] by net.ion.radon.core.Aradon:slayReleasable[20120620-141943]
+[ROOT loaded] by net.ion.radon.core.AradonConfig:initConfig[20120620-141943]
+[SECTION :  loaded] by net.ion.radon.core.Aradon:attach[20120620-141943]
+[SECTION : secure loaded] by net.ion.radon.core.Aradon:attach[20120620-141943]
+[SECTION : twitter loaded] by net.ion.radon.core.Aradon:attach[20120620-141943]
+[Bye....... Aradon] by net.ion.radon.core.Aradon:slayReleasable[20120620-141944]
+[End World.........] by net.ion.radon.core.Aradon:slayReleasable[20120620-141944]
+[ROOT loaded] by net.ion.radon.core.AradonConfig:initConfig[20120620-141944]
+[SECTION :  loaded] by net.ion.radon.core.Aradon:attach[20120620-141944]
+[SECTION : secure loaded] by net.ion.radon.core.Aradon:attach[20120620-141944]
+[SECTION : twitter loaded] by net.ion.radon.core.Aradon:attach[20120620-141944]
+[Bye....... Aradon] by net.ion.radon.core.Aradon:slayReleasable[20120620-141945]
+[End World.........] by net.ion.radon.core.Aradon:slayReleasable[20120620-141945]
+[ROOT loaded] by net.ion.radon.core.AradonConfig:initConfig[20120620-141945]
+[SECTION :  loaded] by net.ion.radon.core.Aradon:attach[20120620-141945]
+[SECTION : secure loaded] by net.ion.radon.core.Aradon:attach[20120620-141945]
+[SECTION : twitter loaded] by net.ion.radon.core.Aradon:attach[20120620-141945]
+[Bye....... Aradon] by net.ion.radon.core.Aradon:slayReleasable[20120620-141946]
+[End World.........] by net.ion.radon.core.Aradon:slayReleasable[20120620-141946]
+[ROOT loaded] by net.ion.radon.core.AradonConfig:initConfig[20120620-141946]
+[SECTION :  loaded] by net.ion.radon.core.Aradon:attach[20120620-141946]
+[SECTION : secure loaded] by net.ion.radon.core.Aradon:attach[20120620-141946]
+[SECTION : twitter loaded] by net.ion.radon.core.Aradon:attach[20120620-141946]
+[Bye....... Aradon] by net.ion.radon.core.Aradon:slayReleasable[20120620-141947]
+[End World.........] by net.ion.radon.core.Aradon:slayReleasable[20120620-141947]
+[ROOT loaded] by net.ion.radon.core.AradonConfig:initConfig[20120620-141947]
+[SECTION :  loaded] by net.ion.radon.core.Aradon:attach[20120620-141947]
+[SECTION : secure loaded] by net.ion.radon.core.Aradon:attach[20120620-141947]
+[SECTION : twitter loaded] by net.ion.radon.core.Aradon:attach[20120620-141947]
+[[Current Throttling Status {}, 2]] by net.ion.radon.aclient.filter.ThrottleFilter:filter[20120620-141948]
+[[Current Throttling Status {}, 1]] by net.ion.radon.aclient.filter.ThrottleFilter:filter[20120620-141948]
+[[Current Throttling Status {}, 0]] by net.ion.radon.aclient.filter.ThrottleFilter:filter[20120620-141948]
+[[Current Throttling Status {}, 1]] by net.ion.radon.aclient.filter.ThrottleFilter$AsyncHandlerWrapper:onCompleted[20120620-141949]
+[[Current Throttling Status {}, 0]] by net.ion.radon.aclient.filter.ThrottleFilter:filter[20120620-141949]
+[[Current Throttling Status {}, 1]] by net.ion.radon.aclient.filter.ThrottleFilter$AsyncHandlerWrapper:onCompleted[20120620-141949]
+[[Current Throttling Status {}, 0]] by net.ion.radon.aclient.filter.ThrottleFilter:filter[20120620-141949]
+[[Current Throttling Status {}, 1]] by net.ion.radon.aclient.filter.ThrottleFilter$AsyncHandlerWrapper:onCompleted[20120620-141949]
+[[Current Throttling Status {}, 0]] by net.ion.radon.aclient.filter.ThrottleFilter:filter[20120620-141949]
+[[Current Throttling Status {}, 1]] by net.ion.radon.aclient.filter.ThrottleFilter$AsyncHandlerWrapper:onCompleted[20120620-141949]
+[[Current Throttling Status {}, 0]] by net.ion.radon.aclient.filter.ThrottleFilter:filter[20120620-141949]
+[[Current Throttling Status {}, 1]] by net.ion.radon.aclient.filter.ThrottleFilter$AsyncHandlerWrapper:onCompleted[20120620-141950]
+[[Current Throttling Status {}, 0]] by net.ion.radon.aclient.filter.ThrottleFilter:filter[20120620-141950]
+[[Current Throttling Status {}, 1]] by net.ion.radon.aclient.filter.ThrottleFilter$AsyncHandlerWrapper:onCompleted[20120620-141950]
+[[Current Throttling Status {}, 0]] by net.ion.radon.aclient.filter.ThrottleFilter:filter[20120620-141950]
+[[Current Throttling Status {}, 1]] by net.ion.radon.aclient.filter.ThrottleFilter$AsyncHandlerWrapper:onCompleted[20120620-141950]
+[[Current Throttling Status {}, 0]] by net.ion.radon.aclient.filter.ThrottleFilter:filter[20120620-141950]
+[[Current Throttling Status {}, 1]] by net.ion.radon.aclient.filter.ThrottleFilter$AsyncHandlerWrapper:onCompleted[20120620-141950]
+[Bye....... Aradon] by net.ion.radon.core.Aradon:slayReleasable[20120620-141951]
+[End World.........] by net.ion.radon.core.Aradon:slayReleasable[20120620-141951]
+[ROOT loaded] by net.ion.radon.core.AradonConfig:initConfig[20120620-141951]
+[SECTION :  loaded] by net.ion.radon.core.Aradon:attach[20120620-141951]
+[SECTION : secure loaded] by net.ion.radon.core.Aradon:attach[20120620-141951]
+[SECTION : twitter loaded] by net.ion.radon.core.Aradon:attach[20120620-141951]
+[Bye....... Aradon] by net.ion.radon.core.Aradon:slayReleasable[20120620-141952]
+[End World.........] by net.ion.radon.core.Aradon:slayReleasable[20120620-141952]
+[ROOT loaded] by net.ion.radon.core.AradonConfig:initConfig[20120620-141952]
+[SECTION :  loaded] by net.ion.radon.core.Aradon:attach[20120620-141952]
+[SECTION : secure loaded] by net.ion.radon.core.Aradon:attach[20120620-141952]
+[SECTION : twitter loaded] by net.ion.radon.core.Aradon:attach[20120620-141952]
+[Bye....... Aradon] by net.ion.radon.core.Aradon:slayReleasable[20120620-141953]
+[End World.........] by net.ion.radon.core.Aradon:slayReleasable[20120620-141953]
+[====================, [f%3D%ED%95%9C%EA%B8%80, f%3D%ED%95%9C%EA%B8%80]] by net.ion.radon.aclient.util.TestUTF8UrlCodec:testHangul[20120620-141953]
+[ROOT loaded] by net.ion.radon.core.AradonConfig:initConfig[20120620-141953]
+[SECTION : webdav loaded] by net.ion.radon.core.Aradon:attach[20120620-141953]
+[====================, [<?xml version="1.0" encoding="utf-8" ?>
+<D:multistatus xmlns:D="DAV:"><D:response><D:href>/</D:href>
+<D:propstat><D:prop><D:creationdate>2012-06-20T05:19:54Z</D:creationdate>
+<D:displayname><![CDATA[/&#x5d;&#x5d;&gt;</D:displayname>
+<D:resourcetype><D:collection/></D:resourcetype>
+<D:source></D:source>
+</D:prop>
+<D:status>HTTP/1.1 200 OK</D:status>
+</D:propstat>
+</D:response>
+</D:multistatus>
+, 207]] by net.ion.radon.aclient.webdav.TestWebDav:testProfind[20120620-141954]
+[Bye....... Aradon] by net.ion.radon.core.Aradon:slayReleasable[20120620-141954]
+[End World.........] by net.ion.radon.core.Aradon:slayReleasable[20120620-141954]
+[ROOT loaded] by net.ion.radon.core.AradonConfig:initConfig[20120620-141954]
+[SECTION : webdav loaded] by net.ion.radon.core.Aradon:attach[20120620-141954]
+[====================, [<html>
+<head>
+   <title>Status page</title>
+</head>
+<body style="font-family: sans-serif;">
+<p style="font-size: 1.2em;font-weight: bold;margin: 1em 0px;">Not Found</p>
+<p>notfound</p>
+<p>You can get technical details <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.5">here</a>.<br>
+Please continue your visit at our <a href="/">home page</a>.
+</p>
+</body>
+</html>
+, 404]] by net.ion.radon.aclient.webdav.TestWebDav:testProfindNotExist[20120620-141955]
+[Bye....... Aradon] by net.ion.radon.core.Aradon:slayReleasable[20120620-141955]
+[End World.........] by net.ion.radon.core.Aradon:slayReleasable[20120620-141955]
+[ROOT loaded] by net.ion.radon.core.AradonConfig:initConfig[20120620-141955]
+[SECTION : webdav loaded] by net.ion.radon.core.Aradon:attach[20120620-141955]
+[====================, [<?xml version="1.0" encoding="utf-8" ?>
+<D:multistatus xmlns:D="DAV:"><D:response><D:href>/</D:href>
+<D:propstat><D:prop><D:creationdate>2012-06-20T05:19:56Z</D:creationdate>
+<D:displayname><![CDATA[/&#x5d;&#x5d;&gt;</D:displayname>
+<D:resourcetype><D:collection/></D:resourcetype>
+<D:source></D:source>
+</D:prop>
+<D:status>HTTP/1.1 200 OK</D:status>
+</D:propstat>
+</D:response>
+<D:response><D:href>/newdir/</D:href>
+<D:propstat><D:prop><D:creationdate>2012-06-20T05:19:56Z</D:creationdate>
+<D:displayname><![CDATA[newdir&#x5d;&#x5d;&gt;</D:displayname>
+<D:resourcetype><D:collection/></D:resourcetype>
+<D:source></D:source>
+</D:prop>
+<D:status>HTTP/1.1 200 OK</D:status>
+</D:propstat>
+</D:response>
+</D:multistatus>
+, 207]] by net.ion.radon.aclient.webdav.TestWebDav:testMkDir[20120620-141956]
+[Bye....... Aradon] by net.ion.radon.core.Aradon:slayReleasable[20120620-141956]
+[End World.........] by net.ion.radon.core.Aradon:slayReleasable[20120620-141956]
+[ROOT loaded] by net.ion.radon.core.AradonConfig:initConfig[20120620-141956]
+[SECTION : webdav loaded] by net.ion.radon.core.Aradon:attach[20120620-141956]
+[====================, ["Accept-Ranges=bytes"; "Access-Control-Allow-Credentials=1"; "Access-Control-Allow-Headers=X-ARADONUNER"; "Access-Control-Allow-Origin=*"; "Access-Control-Max-Age=1728000"; "Access-Control-Request-Method=POST,GET,OPTIONS"; "Allow=HEAD, GET, PUT, POST, PROPFIND, OPTIONS, DELETE, PROPPATCH, MKCOL, COPY, MOVE, HEAD,GET,PUT,POST,PROPFIND,OPTIONS,DELETE,PROPPATCH,MKCOL,COPY,MOVE"; "Content-Length=0"; "Date=Wed, 20 Jun 2012 05:19:57 GMT"; "DAV=1"; "MS-Author-Via=DAV"; "Server=Restlet-Framework/2.1snapshot"; "X-Aradon-Version=0.7"; "XDomainRequestAllowed=1", 200]] by net.ion.radon.aclient.webdav.TestWebDav:testOptions[20120620-141957]
+[Bye....... Aradon] by net.ion.radon.core.Aradon:slayReleasable[20120620-141957]
+[End World.........] by net.ion.radon.core.Aradon:slayReleasable[20120620-141957]
+[ROOT loaded] by net.ion.radon.core.AradonConfig:initConfig[20120620-141957]
+[SECTION : webdav loaded] by net.ion.radon.core.Aradon:attach[20120620-141957]
+[====================, ["Accept-Ranges=bytes"; "Access-Control-Allow-Credentials=1"; "Access-Control-Allow-Headers=X-ARADONUNER"; "Access-Control-Allow-Origin=*"; "Access-Control-Max-Age=1728000"; "Access-Control-Request-Method=POST,GET,OPTIONS"; "Content-Length=0"; "Date=Wed, 20 Jun 2012 05:19:58 GMT"; "Server=Restlet-Framework/2.1snapshot"; "X-Aradon-Version=0.7"; "XDomainRequestAllowed=1", 204]] by net.ion.radon.aclient.webdav.TestWebDav:testHead[20120620-141958]
+[Bye....... Aradon] by net.ion.radon.core.Aradon:slayReleasable[20120620-141958]
+[End World.........] by net.ion.radon.core.Aradon:slayReleasable[20120620-141958]
+[ROOT loaded] by net.ion.radon.core.AradonConfig:initConfig[20120620-141958]
+[SECTION : webdav loaded] by net.ion.radon.core.Aradon:attach[20120620-141958]
+[Bye....... Aradon] by net.ion.radon.core.Aradon:slayReleasable[20120620-141959]
+[End World.........] by net.ion.radon.core.Aradon:slayReleasable[20120620-141959]
+[ROOT loaded] by net.ion.radon.core.AradonConfig:initConfig[20120620-141959]
+[SECTION : webdav loaded] by net.ion.radon.core.Aradon:attach[20120620-141959]
+[Bye....... Aradon] by net.ion.radon.core.Aradon:slayReleasable[20120620-142000]
+[End World.........] by net.ion.radon.core.Aradon:slayReleasable[20120620-142000]
+[ROOT loaded] by net.ion.radon.core.AradonConfig:initConfig[20120620-142000]
+[SECTION : webdav loaded] by net.ion.radon.core.Aradon:attach[20120620-142000]
+[Bye....... Aradon] by net.ion.radon.core.Aradon:slayReleasable[20120620-142001]
+[End World.........] by net.ion.radon.core.Aradon:slayReleasable[20120620-142001]
+[ROOT loaded] by net.ion.radon.core.AradonConfig:initConfig[20120620-142001]
+[SECTION : webdav loaded] by net.ion.radon.core.Aradon:attach[20120620-142001]
+[Bye....... Aradon] by net.ion.radon.core.Aradon:slayReleasable[20120620-142002]
+[End World.........] by net.ion.radon.core.Aradon:slayReleasable[20120620-142002]
+]]></system-out>
+  <system-err><![CDATA[2012. 6. 20 오후 2:19:36 org.restlet.engine.connector.ServerConnectionHelper start
+정보: Starting the internal [HTTP/1.1] server on port 9000
+2012. 6. 20 오후 2:19:36 net.ion.radon.core.Aradon startServer
+경고: aradon started : 9000
+2012. 6. 20 오후 2:19:36 net.ion.radon.core.AradonConfig launchShell
+경고: aradon manage shell not loaded
+2012. 6. 20 오후 2:19:37 org.restlet.engine.connector.ServerConnectionHelper stop
+정보: Stopping the internal [HTTP/1.1] server
+2012. 6. 20 오후 2:19:37 net.ion.radon.core.Aradon stop
+경고: aradon server stoped
+2012. 6. 20 오후 2:19:38 org.restlet.engine.connector.ServerConnectionHelper start
+정보: Starting the internal [HTTP/1.1] server on port 9000
+2012. 6. 20 오후 2:19:38 net.ion.radon.core.Aradon startServer
+경고: aradon started : 9000
+2012. 6. 20 오후 2:19:38 net.ion.radon.core.AradonConfig launchShell
+경고: aradon manage shell not loaded
+2012. 6. 20 오후 2:19:38 org.restlet.engine.connector.ServerConnectionHelper stop
+정보: Stopping the internal [HTTP/1.1] server
+2012. 6. 20 오후 2:19:38 net.ion.radon.core.Aradon stop
+경고: aradon server stoped
+2012. 6. 20 오후 2:19:39 org.restlet.engine.connector.ServerConnectionHelper start
+정보: Starting the internal [HTTP/1.1] server on port 9000
+2012. 6. 20 오후 2:19:39 net.ion.radon.core.Aradon startServer
+경고: aradon started : 9000
+2012. 6. 20 오후 2:19:39 net.ion.radon.core.AradonConfig launchShell
+경고: aradon manage shell not loaded
+2012. 6. 20 오후 2:19:39 org.restlet.engine.log.LogFilter afterHandle
+정보: 2012-06-20	14:19:39	127.0.0.1	-	-	9000	GET	/echo	name=value	200	10	0	38	http://127.0.0.1:9000	AradonClient/1.0	-
+2012. 6. 20 오후 2:19:39 org.restlet.engine.connector.ServerConnectionHelper stop
+정보: Stopping the internal [HTTP/1.1] server
+2012. 6. 20 오후 2:19:39 net.ion.radon.core.Aradon stop
+경고: aradon server stoped
+2012. 6. 20 오후 2:19:40 org.restlet.engine.connector.ServerConnectionHelper start
+정보: Starting the internal [HTTP/1.1] server on port 9000
+[Error, [AsyncHttpClient.close() hasn't been invoked, which may produce file descriptor leaks]] by net.ion.radon.aclient.NewClient:finalize[20120620-141940]
+[Error, [AsyncHttpClient.close() hasn't been invoked, which may produce file descriptor leaks]] by net.ion.radon.aclient.NewClient:finalize[20120620-141940]
+2012. 6. 20 오후 2:19:40 net.ion.radon.core.Aradon startServer
+경고: aradon started : 9000
+2012. 6. 20 오후 2:19:40 net.ion.radon.core.AradonConfig launchShell
+경고: aradon manage shell not loaded
+2012. 6. 20 오후 2:19:40 org.restlet.engine.log.LogFilter afterHandle
+정보: 2012-06-20	14:19:40	127.0.0.1	-	-	9000	POST	/echo	-	200	68	68	2	http://127.0.0.1:9000	AradonClient/1.0	-
+2012. 6. 20 오후 2:19:40 org.restlet.engine.connector.ServerConnectionHelper stop
+정보: Stopping the internal [HTTP/1.1] server
+2012. 6. 20 오후 2:19:40 net.ion.radon.core.Aradon stop
+경고: aradon server stoped
+2012. 6. 20 오후 2:19:41 org.restlet.engine.connector.ServerConnectionHelper start
+정보: Starting the internal [HTTP/1.1] server on port 9000
+2012. 6. 20 오후 2:19:41 net.ion.radon.core.Aradon startServer
+경고: aradon started : 9000
+2012. 6. 20 오후 2:19:41 net.ion.radon.core.AradonConfig launchShell
+경고: aradon manage shell not loaded
+2012. 6. 20 오후 2:19:41 org.restlet.engine.log.LogFilter afterHandle
+정보: 2012-06-20	14:19:41	127.0.0.1	-	-	9000	GET	/echo	-	204	0	0	2	http://127.0.0.1:9000	AradonClient/1.0	-
+2012. 6. 20 오후 2:19:41 org.restlet.engine.connector.ServerConnectionHelper stop
+정보: Stopping the internal [HTTP/1.1] server
+2012. 6. 20 오후 2:19:41 net.ion.radon.core.Aradon stop
+경고: aradon server stoped
+2012. 6. 20 오후 2:19:42 org.restlet.engine.connector.ServerConnectionHelper start
+정보: Starting the internal [HTTP/1.1] server on port 9000
+2012. 6. 20 오후 2:19:42 net.ion.radon.core.Aradon startServer
+경고: aradon started : 9000
+2012. 6. 20 오후 2:19:42 net.ion.radon.core.AradonConfig launchShell
+경고: aradon manage shell not loaded
+2012. 6. 20 오후 2:19:42 org.restlet.engine.log.LogFilter afterHandle
+정보: 2012-06-20	14:19:42	127.0.0.1	-	-	9000	GET	/hello	-	200	5	0	1	http://127.0.0.1:9000	AradonClient/1.0	-
+2012. 6. 20 오후 2:19:42 org.restlet.engine.connector.ServerConnectionHelper stop
+정보: Stopping the internal [HTTP/1.1] server
+2012. 6. 20 오후 2:19:42 net.ion.radon.core.Aradon stop
+경고: aradon server stoped
+2012. 6. 20 오후 2:19:43 org.restlet.engine.connector.ServerConnectionHelper start
+정보: Starting the internal [HTTP/1.1] server on port 9000
+2012. 6. 20 오후 2:19:43 net.ion.radon.core.Aradon startServer
+경고: aradon started : 9000
+2012. 6. 20 오후 2:19:43 net.ion.radon.core.AradonConfig launchShell
+경고: aradon manage shell not loaded
+2012. 6. 20 오후 2:19:43 org.restlet.engine.log.LogFilter afterHandle
+정보: 2012-06-20	14:19:43	127.0.0.1	-	-	9000	GET	/hello	-	200	5	0	1	http://127.0.0.1:9000	AradonClient/1.0	-
+2012. 6. 20 오후 2:19:43 org.restlet.engine.connector.ServerConnectionHelper stop
+정보: Stopping the internal [HTTP/1.1] server
+2012. 6. 20 오후 2:19:43 net.ion.radon.core.Aradon stop
+경고: aradon server stoped
+2012. 6. 20 오후 2:19:44 org.restlet.engine.connector.ServerConnectionHelper start
+정보: Starting the internal [HTTP/1.1] server on port 9000
+2012. 6. 20 오후 2:19:44 net.ion.radon.core.Aradon startServer
+경고: aradon started : 9000
+2012. 6. 20 오후 2:19:44 net.ion.radon.core.AradonConfig launchShell
+경고: aradon manage shell not loaded
+2012. 6. 20 오후 2:19:44 org.restlet.engine.log.LogFilter afterHandle
+정보: 2012-06-20	14:19:44	127.0.0.1	-	-	9000	GET	/hello	-	200	5	0	2	http://127.0.0.1:9000	AradonClient/1.0	-
+2012. 6. 20 오후 2:19:44 org.restlet.engine.connector.ServerConnectionHelper stop
+정보: Stopping the internal [HTTP/1.1] server
+2012. 6. 20 오후 2:19:44 net.ion.radon.core.Aradon stop
+경고: aradon server stoped
+2012. 6. 20 오후 2:19:45 org.restlet.engine.connector.ServerConnectionHelper start
+정보: Starting the internal [HTTP/1.1] server on port 9000
+[Error, [AsyncHttpClient.close() hasn't been invoked, which may produce file descriptor leaks]] by net.ion.radon.aclient.NewClient:finalize[20120620-141945]
+[Error, [AsyncHttpClient.close() hasn't been invoked, which may produce file descriptor leaks]] by net.ion.radon.aclient.NewClient:finalize[20120620-141945]
+[Error, [AsyncHttpClient.close() hasn't been invoked, which may produce file descriptor leaks]] by net.ion.radon.aclient.NewClient:finalize[20120620-141945]
+[Error, [AsyncHttpClient.close() hasn't been invoked, which may produce file descriptor leaks]] by net.ion.radon.aclient.NewClient:finalize[20120620-141945]
+[Error, [AsyncHttpClient.close() hasn't been invoked, which may produce file descriptor leaks]] by net.ion.radon.aclient.NewClient:finalize[20120620-141945]
+2012. 6. 20 오후 2:19:45 net.ion.radon.core.Aradon startServer
+경고: aradon started : 9000
+2012. 6. 20 오후 2:19:45 net.ion.radon.core.AradonConfig launchShell
+경고: aradon manage shell not loaded
+2012. 6. 20 오후 2:19:45 org.restlet.engine.log.LogFilter afterHandle
+정보: 2012-06-20	14:19:45	127.0.0.1	-	-	9000	POST	/multipart	-	200	37	439	2	http://127.0.0.1:9000	AradonClient/1.0	-
+2012. 6. 20 오후 2:19:45 org.restlet.engine.connector.ServerConnectionHelper stop
+정보: Stopping the internal [HTTP/1.1] server
+2012. 6. 20 오후 2:19:45 net.ion.radon.core.Aradon stop
+경고: aradon server stoped
+2012. 6. 20 오후 2:19:46 org.restlet.engine.connector.ServerConnectionHelper start
+정보: Starting the internal [HTTP/1.1] server on port 9000
+2012. 6. 20 오후 2:19:46 net.ion.radon.core.Aradon startServer
+경고: aradon started : 9000
+2012. 6. 20 오후 2:19:46 net.ion.radon.core.AradonConfig launchShell
+경고: aradon manage shell not loaded
+2012. 6. 20 오후 2:19:46 org.restlet.engine.log.LogFilter afterHandle
+정보: 2012-06-20	14:19:46	127.0.0.1	-	-	9000	PUT	/upload	-	200	2	15	2	http://127.0.0.1:9000	AradonClient/1.0	-
+2012. 6. 20 오후 2:19:46 org.restlet.engine.connector.ServerConnectionHelper stop
+정보: Stopping the internal [HTTP/1.1] server
+2012. 6. 20 오후 2:19:46 net.ion.radon.core.Aradon stop
+경고: aradon server stoped
+2012. 6. 20 오후 2:19:47 org.restlet.engine.connector.ServerConnectionHelper start
+정보: Starting the internal [HTTP/1.1] server on port 9000
+2012. 6. 20 오후 2:19:47 net.ion.radon.core.Aradon startServer
+경고: aradon started : 9000
+2012. 6. 20 오후 2:19:47 net.ion.radon.core.AradonConfig launchShell
+경고: aradon manage shell not loaded
+2012. 6. 20 오후 2:19:47 org.restlet.engine.log.LogFilter afterHandle
+정보: 2012-06-20	14:19:47	127.0.0.1	-	-	9000	PUT	/upload	-	200	2	15	2	http://127.0.0.1:9000	AradonClient/1.0	-
+2012. 6. 20 오후 2:19:47 org.restlet.engine.connector.ServerConnectionHelper stop
+정보: Stopping the internal [HTTP/1.1] server
+2012. 6. 20 오후 2:19:47 net.ion.radon.core.Aradon stop
+경고: aradon server stoped
+2012. 6. 20 오후 2:19:48 org.restlet.engine.connector.ServerConnectionHelper start
+정보: Starting the internal [HTTP/1.1] server on port 9000
+2012. 6. 20 오후 2:19:48 net.ion.radon.core.Aradon startServer
+경고: aradon started : 9000
+2012. 6. 20 오후 2:19:48 net.ion.radon.core.AradonConfig launchShell
+경고: aradon manage shell not loaded
+2012. 6. 20 오후 2:19:49 org.restlet.engine.log.LogFilter afterHandle
+정보: 2012-06-20	14:19:49	127.0.0.1	-	-	9000	GET	/slow/503	-	200	5	0	505	http://127.0.0.1:9000	AradonClient/1.0	-
+2012. 6. 20 오후 2:19:49 org.restlet.engine.log.LogFilter afterHandle
+정보: 2012-06-20	14:19:49	127.0.0.1	-	-	9000	GET	/slow/538	-	200	5	0	541	http://127.0.0.1:9000	AradonClient/1.0	-
+2012. 6. 20 오후 2:19:49 org.restlet.engine.log.LogFilter afterHandle
+정보: 2012-06-20	14:19:49	127.0.0.1	-	-	9000	GET	/slow/257	-	200	5	0	260	http://127.0.0.1:9000	AradonClient/1.0	-
+2012. 6. 20 오후 2:19:49 org.restlet.engine.log.LogFilter afterHandle
+정보: 2012-06-20	14:19:49	127.0.0.1	-	-	9000	GET	/slow/456	-	200	5	0	459	http://127.0.0.1:9000	AradonClient/1.0	-
+2012. 6. 20 오후 2:19:50 org.restlet.engine.log.LogFilter afterHandle
+정보: 2012-06-20	14:19:50	127.0.0.1	-	-	9000	GET	/slow/359	-	200	5	0	363	http://127.0.0.1:9000	AradonClient/1.0	-
+2012. 6. 20 오후 2:19:50 org.restlet.engine.log.LogFilter afterHandle
+정보: 2012-06-20	14:19:50	127.0.0.1	-	-	9000	GET	/slow/597	-	200	5	0	601	http://127.0.0.1:9000	AradonClient/1.0	-
+2012. 6. 20 오후 2:19:50 org.restlet.engine.log.LogFilter afterHandle
+정보: 2012-06-20	14:19:50	127.0.0.1	-	-	9000	GET	/slow/394	-	200	5	0	397	http://127.0.0.1:9000	AradonClient/1.0	-
+2012. 6. 20 오후 2:19:50 org.restlet.engine.log.LogFilter afterHandle
+정보: 2012-06-20	14:19:50	127.0.0.1	-	-	9000	GET	/slow/497	-	200	5	0	501	http://127.0.0.1:9000	AradonClient/1.0	-
+2012. 6. 20 오후 2:19:50 org.restlet.engine.connector.ServerConnectionHelper stop
+정보: Stopping the internal [HTTP/1.1] server
+2012. 6. 20 오후 2:19:50 org.restlet.engine.log.LogFilter afterHandle
+정보: 2012-06-20	14:19:50	127.0.0.1	-	-	9000	GET	/slow/200	-	200	5	0	202	http://127.0.0.1:9000	AradonClient/1.0	-
+2012. 6. 20 오후 2:19:51 org.restlet.engine.log.LogFilter afterHandle
+정보: 2012-06-20	14:19:51	127.0.0.1	-	-	9000	GET	/slow/532	-	200	5	0	534	http://127.0.0.1:9000	AradonClient/1.0	-
+2012. 6. 20 오후 2:19:51 net.ion.radon.core.Aradon stop
+경고: aradon server stoped
+2012. 6. 20 오후 2:19:52 org.restlet.engine.connector.ServerConnectionHelper start
+정보: Starting the internal [HTTP/1.1] server on port 9000
+2012. 6. 20 오후 2:19:52 net.ion.radon.core.Aradon startServer
+경고: aradon started : 9000
+2012. 6. 20 오후 2:19:52 net.ion.radon.core.AradonConfig launchShell
+경고: aradon manage shell not loaded
+2012. 6. 20 오후 2:19:52 org.restlet.engine.log.LogFilter afterHandle
+정보: 2012-06-20	14:19:52	127.0.0.1	-	-	9000	GET	/echo	-	204	0	0	5	http://127.0.0.1:9000	AradonClient/1.0	-
+2012. 6. 20 오후 2:19:52 org.restlet.engine.log.LogFilter afterHandle
+정보: 2012-06-20	14:19:52	127.0.0.1	-	-	9000	GET	/hello	-	200	5	0	2	http://127.0.0.1:9000	AradonClient/1.0	-
+2012. 6. 20 오후 2:19:52 org.restlet.engine.connector.ServerConnectionHelper stop
+정보: Stopping the internal [HTTP/1.1] server
+2012. 6. 20 오후 2:19:52 net.ion.radon.core.Aradon stop
+경고: aradon server stoped
+2012. 6. 20 오후 2:19:53 org.restlet.engine.connector.ServerConnectionHelper start
+정보: Starting the internal [HTTP/1.1] server on port 9000
+2012. 6. 20 오후 2:19:53 net.ion.radon.core.Aradon startServer
+경고: aradon started : 9000
+2012. 6. 20 오후 2:19:53 net.ion.radon.core.AradonConfig launchShell
+경고: aradon manage shell not loaded
+2012. 6. 20 오후 2:19:53 org.restlet.engine.log.LogFilter afterHandle
+정보: 2012-06-20	14:19:53	127.0.0.1	-	-	9000	GET	/secure/hello	-	401	424	0	4	http://127.0.0.1:9000	AradonClient/1.0	-
+[Error, [AsyncHttpClient.close() hasn't been invoked, which may produce file descriptor leaks]] by net.ion.radon.aclient.NewClient:finalize[20120620-141953]
+[Error, [AsyncHttpClient.close() hasn't been invoked, which may produce file descriptor leaks]] by net.ion.radon.aclient.NewClient:finalize[20120620-141953]
+[Error, [AsyncHttpClient.close() hasn't been invoked, which may produce file descriptor leaks]] by net.ion.radon.aclient.NewClient:finalize[20120620-141953]
+[Error, [AsyncHttpClient.close() hasn't been invoked, which may produce file descriptor leaks]] by net.ion.radon.aclient.NewClient:finalize[20120620-141953]
+2012. 6. 20 오후 2:19:53 org.restlet.engine.log.LogFilter afterHandle
+정보: 2012-06-20	14:19:53	127.0.0.1		-	9000	GET	/secure/hello	-	401	424	0	3	http://127.0.0.1:9000	AradonClient/1.0	-
+2012. 6. 20 오후 2:19:53 org.restlet.engine.log.LogFilter afterHandle
+정보: 2012-06-20	14:19:53	127.0.0.1	bleujin	-	9000	GET	/secure/hello	-	200	5	0	1	http://127.0.0.1:9000	AradonClient/1.0	-
+2012. 6. 20 오후 2:19:53 org.restlet.engine.connector.ServerConnectionHelper stop
+정보: Stopping the internal [HTTP/1.1] server
+2012. 6. 20 오후 2:19:53 net.ion.radon.core.Aradon stop
+경고: aradon server stoped
+log4j:WARN No appenders could be found for logger (net.ion.framework.vfs.MyFileSystemManager).
+log4j:WARN Please initialize the log4j system properly.
+log4j:WARN See http://logging.apache.org/log4j/1.2/faq.html#noconfig for more info.
+2012. 6. 20 오후 2:19:54 org.restlet.engine.connector.ServerConnectionHelper start
+정보: Starting the internal [HTTP/1.1] server on port 9000
+2012. 6. 20 오후 2:19:54 net.ion.radon.core.Aradon startServer
+경고: aradon started : 9000
+2012. 6. 20 오후 2:19:54 net.ion.radon.core.AradonConfig launchShell
+경고: aradon manage shell not loaded
+2012. 6. 20 오후 2:19:54 org.restlet.engine.log.LogFilter afterHandle
+정보: 2012-06-20	14:19:54	127.0.0.1	-	-	9000	PROPFIND	/webdav/	-	207	383	0	55	http://127.0.0.1:9000	AradonClient/1.0	-
+2012. 6. 20 오후 2:19:54 org.restlet.engine.connector.ServerConnectionHelper stop
+정보: Stopping the internal [HTTP/1.1] server
+2012. 6. 20 오후 2:19:54 net.ion.radon.core.Aradon stop
+경고: aradon server stoped
+2012. 6. 20 오후 2:19:55 org.restlet.engine.connector.ServerConnectionHelper start
+정보: Starting the internal [HTTP/1.1] server on port 9000
+2012. 6. 20 오후 2:19:55 net.ion.radon.core.Aradon startServer
+경고: aradon started : 9000
+2012. 6. 20 오후 2:19:55 net.ion.radon.core.AradonConfig launchShell
+경고: aradon manage shell not loaded
+2012. 6. 20 오후 2:19:55 org.restlet.engine.log.LogFilter afterHandle
+정보: 2012-06-20	14:19:55	127.0.0.1	-	-	9000	PROPFIND	/webdav/notfound	-	404	389	0	3	http://127.0.0.1:9000	AradonClient/1.0	-
+2012. 6. 20 오후 2:19:55 org.restlet.engine.connector.ServerConnectionHelper stop
+정보: Stopping the internal [HTTP/1.1] server
+2012. 6. 20 오후 2:19:55 net.ion.radon.core.Aradon stop
+경고: aradon server stoped
+2012. 6. 20 오후 2:19:56 org.restlet.engine.connector.ServerConnectionHelper start
+정보: Starting the internal [HTTP/1.1] server on port 9000
+2012. 6. 20 오후 2:19:56 net.ion.radon.core.Aradon startServer
+경고: aradon started : 9000
+2012. 6. 20 오후 2:19:56 net.ion.radon.core.AradonConfig launchShell
+경고: aradon manage shell not loaded
+2012. 6. 20 오후 2:19:56 org.restlet.engine.log.LogFilter afterHandle
+정보: 2012-06-20	14:19:56	127.0.0.1	-	-	9000	MKCOL	/webdav/newdir	-	201	0	0	6	http://127.0.0.1:9000	AradonClient/1.0	-
+2012. 6. 20 오후 2:19:56 org.restlet.engine.log.LogFilter afterHandle
+정보: 2012-06-20	14:19:56	127.0.0.1	-	-	9000	PROPFIND	/webdav/	-	207	691	0	1	http://127.0.0.1:9000	AradonClient/1.0	-
+2012. 6. 20 오후 2:19:56 org.restlet.engine.connector.ServerConnectionHelper stop
+정보: Stopping the internal [HTTP/1.1] server
+2012. 6. 20 오후 2:19:56 net.ion.radon.core.Aradon stop
+경고: aradon server stoped
+2012. 6. 20 오후 2:19:57 org.restlet.engine.connector.ServerConnectionHelper start
+정보: Starting the internal [HTTP/1.1] server on port 9000
+2012. 6. 20 오후 2:19:57 net.ion.radon.core.Aradon startServer
+경고: aradon started : 9000
+2012. 6. 20 오후 2:19:57 net.ion.radon.core.AradonConfig launchShell
+경고: aradon manage shell not loaded
+2012. 6. 20 오후 2:19:57 org.restlet.engine.log.LogFilter afterHandle
+정보: 2012-06-20	14:19:57	127.0.0.1	-	-	9000	OPTIONS	/webdav/	-	200	0	0	5	http://127.0.0.1:9000	AradonClient/1.0	-
+2012. 6. 20 오후 2:19:57 org.restlet.engine.connector.ServerConnectionHelper stop
+정보: Stopping the internal [HTTP/1.1] server
+2012. 6. 20 오후 2:19:57 net.ion.radon.core.Aradon stop
+경고: aradon server stoped
+2012. 6. 20 오후 2:19:58 org.restlet.engine.connector.ServerConnectionHelper start
+정보: Starting the internal [HTTP/1.1] server on port 9000
+2012. 6. 20 오후 2:19:58 net.ion.radon.core.Aradon startServer
+경고: aradon started : 9000
+2012. 6. 20 오후 2:19:58 net.ion.radon.core.AradonConfig launchShell
+경고: aradon manage shell not loaded
+2012. 6. 20 오후 2:19:58 org.restlet.engine.log.LogFilter afterHandle
+정보: 2012-06-20	14:19:58	127.0.0.1	-	-	9000	HEAD	/webdav/	-	204	0	0	3	http://127.0.0.1:9000	AradonClient/1.0	-
+2012. 6. 20 오후 2:19:58 org.restlet.engine.connector.ServerConnectionHelper stop
+정보: Stopping the internal [HTTP/1.1] server
+2012. 6. 20 오후 2:19:58 net.ion.radon.core.Aradon stop
+경고: aradon server stoped
+2012. 6. 20 오후 2:19:59 org.restlet.engine.connector.ServerConnectionHelper start
+정보: Starting the internal [HTTP/1.1] server on port 9000
+2012. 6. 20 오후 2:19:59 net.ion.radon.core.Aradon startServer
+경고: aradon started : 9000
+2012. 6. 20 오후 2:19:59 net.ion.radon.core.AradonConfig launchShell
+경고: aradon manage shell not loaded
+2012. 6. 20 오후 2:19:59 org.restlet.engine.log.LogFilter afterHandle
+정보: 2012-06-20	14:19:59	127.0.0.1	-	-	9000	PUT	/webdav/hello.txt	-	201	0	15	8	http://127.0.0.1:9000	AradonClient/1.0	-
+2012. 6. 20 오후 2:19:59 org.restlet.engine.connector.ServerConnectionHelper stop
+정보: Stopping the internal [HTTP/1.1] server
+2012. 6. 20 오후 2:19:59 net.ion.radon.core.Aradon stop
+경고: aradon server stoped
+2012. 6. 20 오후 2:20:00 org.restlet.engine.connector.ServerConnectionHelper start
+정보: Starting the internal [HTTP/1.1] server on port 9000
+[Error, [AsyncHttpClient.close() hasn't been invoked, which may produce file descriptor leaks]] by net.ion.radon.aclient.NewClient:finalize[20120620-142000]
+[Error, [AsyncHttpClient.close() hasn't been invoked, which may produce file descriptor leaks]] by net.ion.radon.aclient.NewClient:finalize[20120620-142000]
+[Error, [AsyncHttpClient.close() hasn't been invoked, which may produce file descriptor leaks]] by net.ion.radon.aclient.NewClient:finalize[20120620-142000]
+[Error, [AsyncHttpClient.close() hasn't been invoked, which may produce file descriptor leaks]] by net.ion.radon.aclient.NewClient:finalize[20120620-142000]
+[Error, [AsyncHttpClient.close() hasn't been invoked, which may produce file descriptor leaks]] by net.ion.radon.aclient.NewClient:finalize[20120620-142000]
+[Error, [AsyncHttpClient.close() hasn't been invoked, which may produce file descriptor leaks]] by net.ion.radon.aclient.NewClient:finalize[20120620-142000]
+[Error, [AsyncHttpClient.close() hasn't been invoked, which may produce file descriptor leaks]] by net.ion.radon.aclient.NewClient:finalize[20120620-142000]
+[Error, [AsyncHttpClient.close() hasn't been invoked, which may produce file descriptor leaks]] by net.ion.radon.aclient.NewClient:finalize[20120620-142000]
+2012. 6. 20 오후 2:20:00 net.ion.radon.core.Aradon startServer
+경고: aradon started : 9000
+2012. 6. 20 오후 2:20:00 net.ion.radon.core.AradonConfig launchShell
+경고: aradon manage shell not loaded
+2012. 6. 20 오후 2:20:00 org.restlet.engine.log.LogFilter afterHandle
+정보: 2012-06-20	14:20:00	127.0.0.1	-	-	9000	PUT	/webdav/hello.txt	-	201	0	15	2	http://127.0.0.1:9000	AradonClient/1.0	-
+2012. 6. 20 오후 2:20:00 org.restlet.engine.log.LogFilter afterHandle
+정보: 2012-06-20	14:20:00	127.0.0.1	-	-	9000	GET	/webdav/hello.txt	-	200	15	0	8	http://127.0.0.1:9000	AradonClient/1.0	-
+2012. 6. 20 오후 2:20:00 org.restlet.engine.connector.ServerConnectionHelper stop
+정보: Stopping the internal [HTTP/1.1] server
+2012. 6. 20 오후 2:20:00 net.ion.radon.core.Aradon stop
+경고: aradon server stoped
+2012. 6. 20 오후 2:20:01 org.restlet.engine.connector.ServerConnectionHelper start
+정보: Starting the internal [HTTP/1.1] server on port 9000
+2012. 6. 20 오후 2:20:01 net.ion.radon.core.Aradon startServer
+경고: aradon started : 9000
+2012. 6. 20 오후 2:20:01 net.ion.radon.core.AradonConfig launchShell
+경고: aradon manage shell not loaded
+2012. 6. 20 오후 2:20:01 org.restlet.engine.log.LogFilter afterHandle
+정보: 2012-06-20	14:20:01	127.0.0.1	-	-	9000	PUT	/webdav/hello.txt	-	201	0	15	3	http://127.0.0.1:9000	AradonClient/1.0	-
+2012. 6. 20 오후 2:20:01 org.restlet.engine.log.LogFilter afterHandle
+정보: 2012-06-20	14:20:01	127.0.0.1	-	-	9000	DELETE	/webdav/hello.txt	-	204	0	0	7	http://127.0.0.1:9000	AradonClient/1.0	-
+2012. 6. 20 오후 2:20:01 org.restlet.engine.log.LogFilter afterHandle
+정보: 2012-06-20	14:20:01	127.0.0.1	-	-	9000	GET	/webdav/hello.txt	-	404	390	0	0	http://127.0.0.1:9000	AradonClient/1.0	-
+2012. 6. 20 오후 2:20:01 org.restlet.engine.connector.ServerConnectionHelper stop
+정보: Stopping the internal [HTTP/1.1] server
+2012. 6. 20 오후 2:20:01 net.ion.radon.core.Aradon stop
+경고: aradon server stoped
+2012. 6. 20 오후 2:20:02 org.restlet.engine.connector.ServerConnectionHelper start
+정보: Starting the internal [HTTP/1.1] server on port 9000
+2012. 6. 20 오후 2:20:02 net.ion.radon.core.Aradon startServer
+경고: aradon started : 9000
+2012. 6. 20 오후 2:20:02 net.ion.radon.core.AradonConfig launchShell
+경고: aradon manage shell not loaded
+2012. 6. 20 오후 2:20:02 org.restlet.engine.log.LogFilter afterHandle
+정보: 2012-06-20	14:20:02	127.0.0.1	-	-	9000	PUT	/webdav/hello.txt	-	201	0	15	3	http://127.0.0.1:9000	AradonClient/1.0	-
+2012. 6. 20 오후 2:20:02 org.restlet.engine.log.LogFilter afterHandle
+정보: 2012-06-20	14:20:02	127.0.0.1	-	-	9000	COPY	/webdav/hello.txt	-	201	0	0	13	http://127.0.0.1:9000	AradonClient/1.0	-
+2012. 6. 20 오후 2:20:02 org.restlet.engine.log.LogFilter afterHandle
+정보: 2012-06-20	14:20:02	127.0.0.1	-	-	9000	COPY	/webdav/hello.txt	-	201	0	0	1	http://127.0.0.1:9000	AradonClient/1.0	-
+2012. 6. 20 오후 2:20:02 org.restlet.engine.log.LogFilter afterHandle
+정보: 2012-06-20	14:20:02	127.0.0.1	-	-	9000	GET	/webdav/hello.txt.copy	-	200	15	0	1	http://127.0.0.1:9000	AradonClient/1.0	-
+2012. 6. 20 오후 2:20:02 org.restlet.engine.connector.ServerConnectionHelper stop
+정보: Stopping the internal [HTTP/1.1] server
+2012. 6. 20 오후 2:20:02 net.ion.radon.core.Aradon stop
+경고: aradon server stoped
+]]></system-err>
+</testsuite>
