@@ -19,11 +19,8 @@ import net.ion.radon.aclient.filter.RequestFilter;
 import net.ion.radon.aclient.providers.netty.NettyProvider;
 import net.ion.radon.aclient.providers.simple.SimpleProvider;
 import net.ion.radon.aclient.resumable.ResumableAsyncHandler;
-import net.ion.radon.client.AradonClientFactory;
-import net.ion.radon.client.ISerialRequest;
 
 import org.apache.commons.io.output.ByteArrayOutputStream;
-import org.apache.log4j.spi.LoggerFactory;
 import org.restlet.data.Method;
 import org.restlet.data.Status;
 import org.restlet.resource.ResourceException;
@@ -348,7 +345,7 @@ class HttpSerialRequest implements ISerialAsyncRequest {
 
 	public HttpSerialRequest(NewClient newClient, String fullPath) {
 		this.client = newClient;
-		builder.setUrl(fullPath);
+		builder.setUrl(fullPath).addHeader("Content-Type", "application/x-java-serialized-object");
 	}
 
 	public RequestBuilder builder() {
@@ -359,41 +356,36 @@ class HttpSerialRequest implements ISerialAsyncRequest {
 		return new HttpSerialRequest(newClient, fullPath);
 	}
 
-	@Override
 	public ISerialAsyncRequest addHeader(String name, String value) {
 		builder.addHeader(name, value);
 		return this;
 	}
 
-	@Override
 	public <V> ListenableFuture<V> delete(Class<? extends V> clz) {
 		return handle(Method.DELETE, "", clz);
 	}
 
-	@Override
 	public <V> ListenableFuture<V> get(Class<? extends V> clz) {
 		return handle(Method.GET, "", clz);
 	}
 
-	@Override
 	public <T, V> ListenableFuture<V> handle(Method method, T arg, final Class<? extends V> clz) {
 		builder.setMethod(method);
 
-		byte[] data = new byte[0];
 		try {
 			if (!(method.equals(Method.GET) || method.equals(Method.DELETE) || method.equals(Method.HEAD))) {
 				ByteArrayOutputStream bout = new ByteArrayOutputStream();
 				ObjectOutputStream output = new ObjectOutputStream(bout);
 				output.writeObject(Employee.create());
 				output.close();
-				data = bout.toByteArray();
+				byte[] data = bout.toByteArray();
 				builder.setBody(data);
 			}
 		} catch (IOException ex) {
 			throw new ResourceException(Status.CLIENT_ERROR_BAD_REQUEST, ex.getMessage());
 		}
 
-		Request req = builder.addHeader("Content-Type", "application/x-java-serialized-object").build();
+		Request req = builder.build();
 
 		try {
 			ListenableFuture<V> future = client.prepareRequest(req).execute(new AsyncCompletionHandler<V>() {
@@ -416,12 +408,10 @@ class HttpSerialRequest implements ISerialAsyncRequest {
 
 	}
 
-	@Override
 	public <T, V> ListenableFuture<V> post(T arg, Class<? extends V> clz) {
 		return handle(Method.POST, arg, clz);
 	}
 
-	@Override
 	public <T, V> ListenableFuture<V> put(T arg, Class<? extends V> clz) {
 		return handle(Method.PUT, arg, clz);
 	}

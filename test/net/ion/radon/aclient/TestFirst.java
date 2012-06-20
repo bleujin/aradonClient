@@ -2,19 +2,12 @@ package net.ion.radon.aclient;
 
 import junit.framework.TestCase;
 import net.ion.framework.util.Debug;
-import net.ion.radon.aclient.providers.netty.NettyProvider;
 import net.ion.radon.core.Aradon;
 import net.ion.radon.impl.let.HelloWorldLet;
 import net.ion.radon.util.AradonTester;
 
 public class TestFirst extends TestCase{
 
-	public void testConnect() throws Exception {
-		ClientConfig config = new ClientConfig.Builder().build();
-		NewClient nc = NewClient.create(new NettyProvider(config), config) ;
-		Debug.line(nc.prepareGet("http://www.paran.com").execute().get().getTextBody()) ;
-		nc.close() ;
-	}
 	
 	public void testSync() throws Exception {
 		Aradon aradon = AradonTester.create().register("", "/hello", HelloWorldLet.class).getAradon() ;

@@ -12,7 +12,6 @@ public class SimpleProviderConfig implements AsyncHttpProviderConfig<String, Str
 
 	private final ConcurrentHashMap<String, String> properties = new ConcurrentHashMap<String, String>();
 
-	@Override
 	public SimpleProviderConfig addProperty(String name, String value) {
 		properties.put(name, value);
 		return this;

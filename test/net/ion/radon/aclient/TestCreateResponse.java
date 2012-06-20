@@ -13,30 +13,25 @@ public class TestCreateResponse extends TestBaseClient{
 		AsyncHandler<Response> ahandler = new AsyncHandler<Response>(){
 
 			private final Response.ResponseBuilder builder = new Response.ResponseBuilder() ;
-			@Override
 			public net.ion.radon.aclient.AsyncHandler.STATE onBodyPartReceived(HttpResponseBodyPart bodyPart) throws Exception {
 				builder.accumulate(bodyPart) ;
 				return STATE.CONTINUE;
 			}
 
-			@Override
 			public Response onCompleted() throws Exception {
 				return builder.build() ;
 			}
 
-			@Override
 			public net.ion.radon.aclient.AsyncHandler.STATE onHeadersReceived(HttpResponseHeaders headers) throws Exception {
 				builder.accumulate(headers);
 				return STATE.CONTINUE ;
 			}
 
-			@Override
 			public net.ion.radon.aclient.AsyncHandler.STATE onStatusReceived(HttpResponseStatus status) throws Exception {
 				builder.accumulate(status);
 				return STATE.CONTINUE ;
 			}
 
-			@Override
 			public void onThrowable(Throwable ex) {
 				ex.printStackTrace() ;
 			}
@@ -66,32 +61,28 @@ public class TestCreateResponse extends TestBaseClient{
 		AsyncHandler<Response> ahandler = new AsyncHandler<Response>(){
 			private final Response.ResponseBuilder builder = new Response.ResponseBuilder() ;
 			FileOutputStream output = new FileOutputStream(file) ;
-			@Override
+
 			public net.ion.radon.aclient.AsyncHandler.STATE onBodyPartReceived(HttpResponseBodyPart bodyPart) throws Exception {
 				// to avoid loading bytes in memory and unnecessary copy
 				bodyPart.writeTo(output) ;
 				return STATE.CONTINUE ;
 			}
 
-			@Override
 			public Response onCompleted() throws Exception {
 				output.close() ;
 				return builder.build() ;
 			}
 
-			@Override
 			public STATE onHeadersReceived(HttpResponseHeaders headers) throws Exception {
 				builder.accumulate(headers);
 				return STATE.CONTINUE ;
 			}
 
-			@Override
 			public STATE onStatusReceived(HttpResponseStatus status) throws Exception {
 				builder.accumulate(status);
 				return STATE.CONTINUE ;
 			}
 
-			@Override
 			public void onThrowable(Throwable ex) {
 				ex.printStackTrace() ;
 			}

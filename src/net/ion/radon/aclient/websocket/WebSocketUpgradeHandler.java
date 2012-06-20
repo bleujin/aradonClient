@@ -28,17 +28,14 @@ public class WebSocketUpgradeHandler implements UpgradeHandler<WebSocket>, Async
 		maxTextSize = b.maxTextSize;
 	}
 
-	@Override
 	public final void onThrowable(Throwable t) {
 		onFailure(t);
 	}
 
-	@Override
 	public final STATE onBodyPartReceived(HttpResponseBodyPart bodyPart) throws Exception {
 		return STATE.CONTINUE;
 	}
 
-	@Override
 	public final STATE onStatusReceived(HttpResponseStatus responseStatus) throws Exception {
 		if (responseStatus.getStatusCode() == 101) {
 			return STATE.UPGRADE;
@@ -47,12 +44,10 @@ public class WebSocketUpgradeHandler implements UpgradeHandler<WebSocket>, Async
 		}
 	}
 
-	@Override
 	public final STATE onHeadersReceived(HttpResponseHeaders headers) throws Exception {
 		return STATE.CONTINUE;
 	}
 
-	@Override
 	public final WebSocket onCompleted() {
 		if (webSocket == null) {
 			throw new IllegalStateException("WebSocket is null");
@@ -60,7 +55,6 @@ public class WebSocketUpgradeHandler implements UpgradeHandler<WebSocket>, Async
 		return webSocket;
 	}
 
-	@Override
 	public final void onSuccess(WebSocket webSocket) {
 		this.webSocket = webSocket;
 		for (WebSocketListener w : l) {
@@ -70,7 +64,6 @@ public class WebSocketUpgradeHandler implements UpgradeHandler<WebSocket>, Async
 		ok.set(true);
 	}
 
-	@Override
 	public final void onFailure(Throwable t) {
 		for (WebSocketListener w : l) {
 			if (!ok.get() && webSocket != null) {

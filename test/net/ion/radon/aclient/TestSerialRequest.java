@@ -4,6 +4,8 @@ import java.io.ByteArrayInputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import net.ion.framework.db.bean.test.Emp;
 import net.ion.framework.util.Debug;
@@ -77,6 +79,7 @@ public class TestSerialRequest extends TestCase {
 		assertEquals(20, emp.getAge()) ;
 	}
 	
+	
 }
 
 class SerialLet extends AbstractServerResource {
@@ -91,12 +94,14 @@ class SerialLet extends AbstractServerResource {
 	public Employee getEmp(){
 		return Employee.create() ;
 	}
+	
 }
 
 class Employee implements Serializable {
 	private static final long serialVersionUID = 2217465030602933108L;
 	private String name ;
 	private int age ;
+	private List<String> acts = new ArrayList<String>() ;
 	
 	private Employee(String name, int age){
 		this.name = name ;

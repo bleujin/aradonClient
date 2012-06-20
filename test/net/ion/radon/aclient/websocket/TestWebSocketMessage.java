@@ -19,11 +19,9 @@ public class TestWebSocketMessage extends TestBaseWebsocket {
 				latch.countDown();
 			}
 
-			@Override
 			public void onClose(WebSocket websocket) {
 			}
 
-			@Override
 			public void onError(Throwable t) {
 				t.printStackTrace();
 				latch.countDown();
@@ -68,17 +66,14 @@ public class TestWebSocketMessage extends TestBaseWebsocket {
 
 		WebSocket websocket = c.prepareGet(getEchoWebSocketUri()).execute(new WebSocketUpgradeHandler.Builder().addWebSocketListener(new WebSocketListener() {
 
-			@Override
 			public void onOpen(WebSocket websocket) {
 			}
 
-			@Override
 			public void onClose(WebSocket websocket) {
 				text.set("OnClose");
 				latch.countDown();
 			}
 
-			@Override
 			public void onError(Throwable t) {
 				t.printStackTrace();
 				latch.countDown();
@@ -127,52 +122,42 @@ public class TestWebSocketMessage extends TestBaseWebsocket {
 
 		WebSocket websocket = c.prepareGet(getEchoWebSocketUri()).execute(new WebSocketUpgradeHandler.Builder().addWebSocketListener(new WebSocketTextListener() {
 
-			@Override
 			public void onMessage(String message) {
 				text.set(message);
 				latch.countDown();
 			}
 
-			@Override
 			public void onFragment(String fragment, boolean last) {
 			}
 
-			@Override
 			public void onOpen(WebSocket websocket) {
 			}
 
-			@Override
 			public void onClose(WebSocket websocket) {
 				latch.countDown();
 			}
 
-			@Override
 			public void onError(Throwable t) {
 				t.printStackTrace();
 				latch.countDown();
 			}
 		}).addWebSocketListener(new WebSocketTextListener() {
 
-			@Override
 			public void onMessage(String message) {
 				text.set(text.get() + message);
 				latch.countDown();
 			}
 
-			@Override
 			public void onFragment(String fragment, boolean last) {
 			}
 
-			@Override
 			public void onOpen(WebSocket websocket) {
 			}
 
-			@Override
 			public void onClose(WebSocket websocket) {
 				latch.countDown();
 			}
 
-			@Override
 			public void onError(Throwable t) {
 				t.printStackTrace();
 				latch.countDown();
@@ -192,27 +177,22 @@ public class TestWebSocketMessage extends TestBaseWebsocket {
 
 		c.prepareGet(getEchoWebSocketUri()).execute(new WebSocketUpgradeHandler.Builder().addWebSocketListener(new WebSocketTextListener() {
 
-			@Override
 			public void onMessage(String message) {
 				text.set(text.get() + message);
 				latch.countDown();
 			}
 
-			@Override
 			public void onFragment(String fragment, boolean last) {
 			}
 
-			@Override
 			public void onOpen(WebSocket websocket) {
 				websocket.sendTextMessage("ECHO").sendTextMessage("ECHO");
 			}
 
-			@Override
 			public void onClose(WebSocket websocket) {
 				latch.countDown();
 			}
 
-			@Override
 			public void onError(Throwable t) {
 				t.printStackTrace();
 				latch.countDown();
@@ -231,17 +211,14 @@ public class TestWebSocketMessage extends TestBaseWebsocket {
 
 		c.prepareGet(getEchoWebSocketUri()).execute(new WebSocketUpgradeHandler.Builder().addWebSocketListener(new WebSocketListener() {
 
-			@Override
 			public void onOpen(WebSocket websocket) {
 			}
 
-			@Override
 			public void onClose(WebSocket websocket) {
 				text.set("OnClose");
 				latch.countDown();
 			}
 
-			@Override
 			public void onError(Throwable t) {
 				t.printStackTrace();
 				latch.countDown();

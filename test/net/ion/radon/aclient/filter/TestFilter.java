@@ -43,7 +43,6 @@ public class TestFilter extends TestBaseClient{
 		Builder builder = new ClientConfig.Builder() ;
 		builder.addResponseFilter(new ResponseFilter(){
 
-			@Override
 			public <T> FilterContext<T> filter(FilterContext<T> ctx) throws FilterException {
 				if (ctx.getResponseStatus().getStatusCode() == 204){
 					FilterContext<T> result = new FilterContext.FilterContextBuilder<T>(ctx).request(new RequestBuilder(Method.GET).setUrl(getHelloUri()).build()).replayRequest(true).build();
@@ -67,7 +66,6 @@ public class TestFilter extends TestBaseClient{
 		
 		final File file = File.createTempFile("dd", "cc") ;
 		builder.addIOExceptionFilter(new IOExceptionFilter() {
-			@Override
 			public <T> FilterContext<T> filter(FilterContext<T> ctx) throws FilterException {
 				if (ctx.getIOException() != null ) {
 					Request request = new RequestBuilder(ctx.getRequest()).setRangeOffset(file.length()).build() ;
@@ -81,31 +79,26 @@ public class TestFilter extends TestBaseClient{
 		Response r = c.prepareGet("http://host:port/bigfile.avi").execute(new AsyncHandler<Response>(){
 			private final Response.ResponseBuilder builder = new Response.ResponseBuilder() ;
 			FileOutputStream output = new FileOutputStream(file) ;
-			@Override
 			public net.ion.radon.aclient.AsyncHandler.STATE onBodyPartReceived(HttpResponseBodyPart bodyPart) throws Exception {
 				bodyPart.writeTo(output) ;
 				return STATE.CONTINUE ;
 			}
 
-			@Override
 			public Response onCompleted() throws Exception {
 				output.close() ;
 				return builder.build() ;
 			}
 
-			@Override
 			public STATE onHeadersReceived(HttpResponseHeaders headers) throws Exception {
 				builder.accumulate(headers);
 				return STATE.CONTINUE ;
 			}
 
-			@Override
 			public STATE onStatusReceived(HttpResponseStatus status) throws Exception {
 				builder.accumulate(status);
 				return STATE.CONTINUE ;
 			}
 
-			@Override
 			public void onThrowable(Throwable ex) {
 				ex.printStackTrace() ;
 			}
