@@ -5,7 +5,6 @@
 .loadpath
 .buildpath
 .classpath
-.project
 .settings
 .idea
 *.iml
