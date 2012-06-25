@@ -8,10 +8,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import net.ion.framework.db.bean.test.Emp;
-import net.ion.framework.util.Debug;
+import junit.framework.TestCase;
 import net.ion.framework.util.IOUtil;
-import net.ion.radon.client.ISerialRequest;
 import net.ion.radon.core.Aradon;
 import net.ion.radon.core.let.AbstractServerResource;
 import net.ion.radon.util.AradonTester;
@@ -20,8 +18,6 @@ import org.apache.commons.io.output.ByteArrayOutputStream;
 import org.restlet.data.Method;
 import org.restlet.resource.Get;
 import org.restlet.resource.Post;
-
-import junit.framework.TestCase;
 
 public class TestSerialRequest extends TestCase {
 
