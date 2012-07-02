@@ -4,18 +4,17 @@ import static org.jboss.netty.buffer.ChannelBuffers.wrappedBuffer;
 
 import java.util.concurrent.ConcurrentLinkedQueue;
 
+import net.ion.nradon.netty.codec.http.websocketx.BinaryWebSocketFrame;
+import net.ion.nradon.netty.codec.http.websocketx.PingWebSocketFrame;
+import net.ion.nradon.netty.codec.http.websocketx.PongWebSocketFrame;
+import net.ion.nradon.netty.codec.http.websocketx.TextWebSocketFrame;
 import net.ion.radon.aclient.websocket.WebSocket;
 import net.ion.radon.aclient.websocket.WebSocketByteListener;
 import net.ion.radon.aclient.websocket.WebSocketCloseCodeReasonListener;
 import net.ion.radon.aclient.websocket.WebSocketListener;
 import net.ion.radon.aclient.websocket.WebSocketTextListener;
 
-import org.apache.log4j.spi.LoggerFactory;
 import org.jboss.netty.channel.Channel;
-import org.jboss.netty.handler.codec.http.websocketx.BinaryWebSocketFrame;
-import org.jboss.netty.handler.codec.http.websocketx.PingWebSocketFrame;
-import org.jboss.netty.handler.codec.http.websocketx.PongWebSocketFrame;
-import org.jboss.netty.handler.codec.http.websocketx.TextWebSocketFrame;
 
 public class NettyWebSocket implements WebSocket {
 	private final Channel channel;

@@ -35,7 +35,7 @@ import org.restlet.util.Series;
 
 public class TestBaseClient extends TestCase{
 
-	private Aradon aradon ;
+	protected Aradon aradon ;
 	@Override
 	protected void setUp() throws Exception {
 		super.setUp();

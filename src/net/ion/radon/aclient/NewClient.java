@@ -386,6 +386,8 @@ class HttpSerialRequest implements ISerialAsyncRequest {
 				builder.setBody(data);
 			}
 		} catch (IOException ex) {
+			ex.printStackTrace() ;
+			Debug.line(arg) ;
 			throw new ResourceException(Status.CLIENT_ERROR_BAD_REQUEST, ex.getMessage());
 		}
 
@@ -397,11 +399,14 @@ class HttpSerialRequest implements ISerialAsyncRequest {
 					
 					if (!st.isSuccess())
 						throw new ResourceException(st, response.getTextBody());
-
-					ObjectInputStream oinput = new ObjectInputStream(response.getBodyAsStream());
-					V result = clz.cast(oinput.readObject());
-
-					return result;
+					InputStream bodyStream = response.getBodyAsStream();
+					try{
+						ObjectInputStream oinput = new ObjectInputStream(bodyStream);
+						V result = clz.cast(oinput.readObject());
+						return result;
+					} finally {
+						IOUtil.closeQuietly(bodyStream) ;
+					}
 				}
 			} ;
 			
