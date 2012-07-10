@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<project name="Jar Publish" default="publish" basedir=".">
+	
+	<property name="baseDir" value="." />
+	<property name="binDir" value="../bin" />
+	<property name="publishDir" value="./publish" />
+	
+	<tstamp>
+	  <format property="TODAY_MY" pattern="MM/dd/yyyy hh:mm"/>
+	</tstamp>
+	
+	<property name="manifest.main.class" value="" />
+	<property name="manifest.classpath" value="./" />
+	<property name="version.number" value="0"/>
+	<property name="build.number" value="1"/>
+	<property name="user.name" value="bleujin@gmail.com"/>
+	
+	
+	<target name="publish">
+		<delete file="../testlib/jrequest_${version.number}.${build.number}.jar"></delete>
+		<jar destfile="../testlib/jrequest_${version.number}.${build.number}.jar">
+			<manifest>
+			  <attribute name="Built-By" value="${user.name}"/>
+			  <attribute name="Created-By" value="${user.name}"/>
+			  <!-- attribute name="Main-Class" value="${manifest.main.class}"/ -->
+			  <attribute name="Built-Date" value="${TODAY_MY}" />
+			  <attribute name="Class-Path" value="${manifest.classpath}" />
+			  <section name="common">
+			    <attribute name="Specification-Title" value="i-on aradon client"/>
+			    <attribute name="Specification-Version" value="${version.number}.${build.number}"/>
+			    <attribute name="Specification-Vendor" value="i-on"/>
+			  </section>
+			</manifest>
+			<fileset dir="${binDir}/" includes="net/ion/radon/aclient/ddos/**" />
+		</jar>
+	</target>
+	
+	<target name="copy" depends="publish">
+		<echo>Copy to JMeter EXT</echo>
+		<copy file="../testlib/jrequest_${version.number}.${build.number}.jar" todir="D:/download/apache-jmeter-2/apache-jmeter-2.7/lib/ext/" />
+	</target>
+</project>

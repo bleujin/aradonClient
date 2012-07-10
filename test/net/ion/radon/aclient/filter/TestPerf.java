@@ -21,7 +21,7 @@ public class TestPerf extends TestBaseClient {
 		aradon = AradonTester.create()
 			.register("", "/hello", TestLet.class)
 			.getAradon() ;
-		aradon.startServer(ConnectorConfig.makeJettyHTTPConfig(9000)) ;
+		aradon.startServer(ConnectorConfig.makeSimpleHTTPConfig(9000)) ;
 		
 	}
 
@@ -29,11 +29,11 @@ public class TestPerf extends TestBaseClient {
 	public void testManyRequest() throws Exception {
 		Thread.sleep(1000) ;
 		Builder builder = new ClientConfig.Builder() ;
-		builder.addRequestFilter(new ThrottleFilter(50)) ;
+		builder.addRequestFilter(new ThrottleFilter(200)) ;
 		
 		NewClient c = NewClient.create(builder.build()) ;
 		
-		for (int i = 0; i < 1000; i++) {
+		for (int i = 0; i < 2000; i++) {
 			c.prepareGet(getHelloUri()).execute() ;
 		}
 		c.close();

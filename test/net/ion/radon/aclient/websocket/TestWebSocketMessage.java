@@ -12,8 +12,8 @@ public class TestWebSocketMessage extends TestBaseWebsocket {
 		NewClient c = newHttpClient(new ClientConfig.Builder().build());
 		final CountDownLatch latch = new CountDownLatch(1);
 		final AtomicReference<String> text = new AtomicReference<String>("");
-
-		WebSocket ws = c.prepareGet(getEchoWebSocketUri()).execute(new WebSocketUpgradeHandler.Builder().addWebSocketListener(new WebSocketListener() {
+		
+		WebSocket ws = c.createWebSocket(getEchoWebSocketUri(), new WebSocketListener() {
 			public void onOpen(WebSocket websocket) {
 				text.set("OnOpen");
 				latch.countDown();
@@ -26,8 +26,8 @@ public class TestWebSocketMessage extends TestBaseWebsocket {
 				t.printStackTrace();
 				latch.countDown();
 			}
-		}).build()).get();
-
+		}) ;
+		
 		latch.await();
 		ws.sendTextMessage("Hello") ;
 		
@@ -64,21 +64,18 @@ public class TestWebSocketMessage extends TestBaseWebsocket {
 		final CountDownLatch latch = new CountDownLatch(1);
 		final AtomicReference<String> text = new AtomicReference<String>("");
 
-		WebSocket websocket = c.prepareGet(getEchoWebSocketUri()).execute(new WebSocketUpgradeHandler.Builder().addWebSocketListener(new WebSocketListener() {
-
+		WebSocket websocket = c.createWebSocket(getEchoWebSocketUri(), new WebSocketListener() {
 			public void onOpen(WebSocket websocket) {
 			}
-
 			public void onClose(WebSocket websocket) {
 				text.set("OnClose");
 				latch.countDown();
 			}
-
 			public void onError(Throwable t) {
 				t.printStackTrace();
 				latch.countDown();
 			}
-		}).build()).get();
+		}) ;
 
 		websocket.close();
 
@@ -91,7 +88,7 @@ public class TestWebSocketMessage extends TestBaseWebsocket {
 		final CountDownLatch latch = new CountDownLatch(1);
 		final AtomicReference<String> text = new AtomicReference<String>("");
 
-		WebSocket websocket = c.prepareGet(getEchoWebSocketUri()).execute(new WebSocketUpgradeHandler.Builder().addWebSocketListener(new WebSocketTextListener() {
+		WebSocket websocket = c.createWebSocket(getEchoWebSocketUri(), new WebSocketTextListener() {
 			public void onMessage(String message) {
 				text.set(message);
 				latch.countDown();
@@ -107,7 +104,7 @@ public class TestWebSocketMessage extends TestBaseWebsocket {
 				t.printStackTrace();
 				latch.countDown();
 			}
-		}).build()).get();
+		}) ;
 
 		websocket.sendTextMessage("ECHO");
 
@@ -120,8 +117,7 @@ public class TestWebSocketMessage extends TestBaseWebsocket {
 		final CountDownLatch latch = new CountDownLatch(2);
 		final AtomicReference<String> text = new AtomicReference<String>("");
 
-		WebSocket websocket = c.prepareGet(getEchoWebSocketUri()).execute(new WebSocketUpgradeHandler.Builder().addWebSocketListener(new WebSocketTextListener() {
-
+		WebSocket websocket = c.createWebSocket(getEchoWebSocketUri(), new WebSocketTextListener() {
 			public void onMessage(String message) {
 				text.set(message);
 				latch.countDown();
@@ -129,40 +125,33 @@ public class TestWebSocketMessage extends TestBaseWebsocket {
 
 			public void onFragment(String fragment, boolean last) {
 			}
-
 			public void onOpen(WebSocket websocket) {
 			}
-
 			public void onClose(WebSocket websocket) {
 				latch.countDown();
 			}
-
 			public void onError(Throwable t) {
 				t.printStackTrace();
 				latch.countDown();
 			}
-		}).addWebSocketListener(new WebSocketTextListener() {
+		}, new WebSocketTextListener() {
 
 			public void onMessage(String message) {
 				text.set(text.get() + message);
 				latch.countDown();
 			}
-
 			public void onFragment(String fragment, boolean last) {
 			}
-
 			public void onOpen(WebSocket websocket) {
 			}
-
 			public void onClose(WebSocket websocket) {
 				latch.countDown();
 			}
-
 			public void onError(Throwable t) {
 				t.printStackTrace();
 				latch.countDown();
 			}
-		}).build()).get();
+		});
 
 		websocket.sendTextMessage("ECHO");
 
@@ -175,7 +164,7 @@ public class TestWebSocketMessage extends TestBaseWebsocket {
 		final CountDownLatch latch = new CountDownLatch(2);
 		final AtomicReference<String> text = new AtomicReference<String>("");
 
-		c.prepareGet(getEchoWebSocketUri()).execute(new WebSocketUpgradeHandler.Builder().addWebSocketListener(new WebSocketTextListener() {
+		c.createWebSocket(getEchoWebSocketUri(), new WebSocketTextListener() {
 
 			public void onMessage(String message) {
 				text.set(text.get() + message);
@@ -197,7 +186,7 @@ public class TestWebSocketMessage extends TestBaseWebsocket {
 				t.printStackTrace();
 				latch.countDown();
 			}
-		}).build()).get();
+		});
 
 		latch.await();
 		assertEquals(text.get(), "ECHOECHO");
@@ -209,21 +198,18 @@ public class TestWebSocketMessage extends TestBaseWebsocket {
 		final CountDownLatch latch = new CountDownLatch(1);
 		final AtomicReference<String> text = new AtomicReference<String>("");
 
-		c.prepareGet(getEchoWebSocketUri()).execute(new WebSocketUpgradeHandler.Builder().addWebSocketListener(new WebSocketListener() {
-
+		c.createWebSocket(getEchoWebSocketUri(), new WebSocketListener() {
 			public void onOpen(WebSocket websocket) {
 			}
-
 			public void onClose(WebSocket websocket) {
 				text.set("OnClose");
 				latch.countDown();
 			}
-
 			public void onError(Throwable t) {
 				t.printStackTrace();
 				latch.countDown();
 			}
-		}).build()).get();
+		}) ;
 
 		latch.await();
 		assertEquals(text.get(), "OnClose");

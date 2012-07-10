@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import net.ion.framework.util.Debug;
@@ -22,6 +23,10 @@ import net.ion.radon.aclient.filter.RequestFilter;
 import net.ion.radon.aclient.providers.netty.NettyProvider;
 import net.ion.radon.aclient.providers.simple.SimpleProvider;
 import net.ion.radon.aclient.resumable.ResumableAsyncHandler;
+import net.ion.radon.aclient.websocket.WebSocket;
+import net.ion.radon.aclient.websocket.WebSocketListener;
+import net.ion.radon.aclient.websocket.WebSocketUpgradeHandler;
+import net.ion.radon.aclient.websocket.WebSocketUpgradeHandler.Builder;
 
 import org.apache.commons.io.output.ByteArrayOutputStream;
 import org.restlet.data.Method;
@@ -337,6 +342,15 @@ public class NewClient implements Closeable {
 
 	public ISerialAsyncRequest createSerialRequest(String fullPath) {
 		return HttpSerialRequest.create(this, fullPath);
+	}
+
+	public WebSocket createWebSocket(String webSocketUri, WebSocketListener... webSocketListener) throws InterruptedException, ExecutionException, IOException {
+		
+		Builder builder = new WebSocketUpgradeHandler.Builder();
+		for (WebSocketListener listener : webSocketListener) {
+			builder.addWebSocketListener(listener) ;
+		}
+		return prepareGet(webSocketUri).execute(builder.build()).get() ;
 	}
 }
 
