@@ -15,7 +15,7 @@ public class TestManyRequest extends TestCase {
 
 	public void testManyRequest() throws Exception {
 		AradonTester at = AradonTester.create().register("", "/hello/{num}", DummyLet.class);
-		at.getAradon().startServer(ConnectorConfig.makeJettyHTTPConfig(9005));
+		at.getAradon().startServer(ConnectorConfig.makeNettyHTTPConfig(9005));
 
 		// AradonClient client = AradonClientFactory.create("http://61.250.201.157:9005");
 		NewClient client = NewClient.create() ;
