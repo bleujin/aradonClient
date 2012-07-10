@@ -23,7 +23,7 @@ public class TestManyRequest extends TestCase {
 		for (int i : ListUtil.rangeNum(50000)) {
 			// IAradonRequest request = client.createRequest("/hello/" + i);
 			//  Response res = request.handle(Method.GET);
-			Response res = client.prepareGet("http://61.250.201.157:9005/hello/" + i).execute().get() ;
+			Response res = client.prepareGet("http://1270.0.0.1:9005/hello/" + i).execute().get() ;
 			// assertEquals(200, res.getStatus().getCode()) ;
 
 			if (res.getStatusCode()  != 200) {
