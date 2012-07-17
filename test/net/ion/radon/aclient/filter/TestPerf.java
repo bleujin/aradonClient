@@ -1,18 +1,14 @@
 package net.ion.radon.aclient.filter;
 
-import org.restlet.resource.Get;
-
 import net.ion.radon.aclient.ClientConfig;
 import net.ion.radon.aclient.NewClient;
 import net.ion.radon.aclient.TestBaseClient;
 import net.ion.radon.aclient.ClientConfig.Builder;
-import net.ion.radon.core.EnumClass.ILocation;
 import net.ion.radon.core.config.ConnectorConfig;
 import net.ion.radon.core.let.AbstractServerResource;
-import net.ion.radon.core.let.MultipartLet;
-import net.ion.radon.core.security.ChallengeAuthenticator;
-import net.ion.radon.core.security.SimpleVerifier;
 import net.ion.radon.util.AradonTester;
+
+import org.restlet.resource.Get;
 
 public class TestPerf extends TestBaseClient {
 
