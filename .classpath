@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry combineaccessrules="false" kind="src" path="/Aradon"/>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" path="test"/>
+	<classpathentry kind="src" path="perform"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/3"/>
+	<classpathentry kind="lib" path="lib/apache_extend_fat.jar"/>
+	<classpathentry kind="lib" path="lib/rest_fat.jar"/>
+	<classpathentry kind="lib" path="lib/commons-vfs2-2.0.jar"/>
+	<classpathentry kind="lib" path="lib/iframework_2.3.jar"/>
+	<classpathentry kind="lib" path="lib/aradon_0.7.jar"/>
+	<classpathentry kind="lib" path="lib/netty-3.2.7.Final.jar"/>
+	<classpathentry kind="lib" path="testlib/ApacheJMeter_java.jar"/>
+	<classpathentry kind="lib" path="testlib/ApacheJMeter_core.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jdk5_22"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

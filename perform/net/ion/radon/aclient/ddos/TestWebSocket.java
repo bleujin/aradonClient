@@ -66,6 +66,7 @@ public class TestWebSocket extends TestCase {
 			WebSocket ws = nc.createWebSocket("ws://127.0.0.1:9000/echo", webSocketListener) ;
 			ws.sendTextMessage("Hello") ;
 			ws.close() ;
+			nc.close() ;
 		}
 	}
 	

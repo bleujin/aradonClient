@@ -4,7 +4,6 @@
 .*.swo
 .loadpath
 .buildpath
-.classpath
 .settings
 .idea
 *.iml

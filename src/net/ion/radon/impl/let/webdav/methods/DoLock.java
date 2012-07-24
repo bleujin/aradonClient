@@ -398,7 +398,7 @@ public class DoLock extends AbstractMethod {
 		generatedXML.sendData();
 
 		response.setStatus(Status.SUCCESS_OK);
-		Debug.line('#', writer.getBuffer()) ;
+		Debug.debug('#', writer.getBuffer()) ;
 		return new StringRepresentation(writer.getBuffer(), MediaType.valueOf("text/xml; charset=UTF-8"), Language.ALL, CharacterSet.UTF_8);
 	}
 
