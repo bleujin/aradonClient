@@ -6,6 +6,7 @@ import net.ion.framework.util.ListUtil;
 import net.ion.radon.aclient.NewClient;
 import net.ion.radon.aclient.Response;
 import net.ion.radon.core.config.ConnectorConfig;
+import net.ion.radon.core.config.ConnectorConfiguration;
 import net.ion.radon.core.let.AbstractServerResource;
 import net.ion.radon.util.AradonTester;
 
@@ -15,7 +16,7 @@ public class TestManyRequest extends TestCase {
 
 	public void testManyRequest() throws Exception {
 		AradonTester at = AradonTester.create().register("", "/hello/{num}", DummyLet.class);
-		at.getAradon().startServer(ConnectorConfig.makeNettyHTTPConfig(9005));
+		at.getAradon().startServer(ConnectorConfiguration.makeNettyHTTPConfig(9005));
 
 		// AradonClient client = AradonClientFactory.create("http://61.250.201.157:9005");
 		NewClient client = NewClient.create() ;

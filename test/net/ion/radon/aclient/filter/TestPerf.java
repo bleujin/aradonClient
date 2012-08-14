@@ -5,6 +5,7 @@ import net.ion.radon.aclient.NewClient;
 import net.ion.radon.aclient.TestBaseClient;
 import net.ion.radon.aclient.ClientConfig.Builder;
 import net.ion.radon.core.config.ConnectorConfig;
+import net.ion.radon.core.config.ConnectorConfiguration;
 import net.ion.radon.core.let.AbstractServerResource;
 import net.ion.radon.util.AradonTester;
 
@@ -17,7 +18,7 @@ public class TestPerf extends TestBaseClient {
 		aradon = AradonTester.create()
 			.register("", "/hello", TestLet.class)
 			.getAradon() ;
-		aradon.startServer(ConnectorConfig.makeSimpleHTTPConfig(9000)) ;
+		aradon.startServer(ConnectorConfiguration.makeSimpleHTTPConfig(9000)) ;
 		
 	}
 

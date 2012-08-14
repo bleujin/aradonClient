@@ -13,6 +13,7 @@ import net.ion.nradon.handler.aradon.AradonHandler;
 import net.ion.radon.aclient.NewClient;
 import net.ion.radon.core.Aradon;
 import net.ion.radon.core.config.ConnectorConfig;
+import net.ion.radon.core.config.ConnectorConfiguration;
 import net.ion.radon.core.let.AbstractServerResource;
 import net.ion.radon.impl.let.HelloWorldLet;
 import net.ion.radon.util.AradonTester;
@@ -23,7 +24,7 @@ public class TestCommandRunner extends TestCase{
 
 	public void testRunAradon() throws Exception {
 		Aradon aradon = AradonTester.create().register("", "/run", CommandRunLet.class).getAradon(); 
-		aradon.startServer(ConnectorConfig.makeJettyHTTPConfig(9000)) ;
+		aradon.startServer(ConnectorConfiguration.makeJettyHTTPConfig(9000)) ;
 	
 		Integer r = NewClient.create().createSerialRequest("http://127.0.0.1:9000/run").handle(Method.POST, new CountCommand(), Integer.class).get() ;
 		
@@ -35,7 +36,7 @@ public class TestCommandRunner extends TestCase{
 	public void xtestHello() throws Exception {
 		
 		Aradon aradon = AradonTester.create().register("", "/hello", HelloWorldLet.class).getAradon(); 
-		aradon.startServer(ConnectorConfig.makeNettyHTTPConfig(9000)) ;
+		aradon.startServer(ConnectorConfiguration.makeNettyHTTPConfig(9000)) ;
 		
 		new InfinityThread().startNJoin() ;
 	}

@@ -6,6 +6,7 @@ import java.io.InputStream;
 import java.security.KeyStore;
 import java.security.SecureRandom;
 import java.security.cert.X509Certificate;
+import java.util.Map;
 
 import javax.net.ssl.KeyManager;
 import javax.net.ssl.KeyManagerFactory;
@@ -14,9 +15,11 @@ import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
 
 import org.restlet.data.Method;
+import org.restlet.data.Protocol;
 import org.restlet.resource.Get;
 
 import net.ion.framework.util.Debug;
+import net.ion.framework.util.MapUtil;
 import net.ion.radon.aclient.ClientConfig;
 import net.ion.radon.aclient.NewClient;
 import net.ion.radon.aclient.Request;
@@ -25,7 +28,9 @@ import net.ion.radon.aclient.Response;
 import net.ion.radon.aclient.ClientConfig.Builder;
 import net.ion.radon.core.Aradon;
 import net.ion.radon.core.config.ConnectorConfig;
+import net.ion.radon.core.config.ConnectorConfiguration;
 import net.ion.radon.core.config.XMLConfig;
+import net.ion.radon.core.config.ConnectorConfig.EngineType;
 import net.ion.radon.core.let.AbstractServerResource;
 import net.ion.radon.impl.let.HelloWorldLet;
 import net.ion.radon.util.AradonTester;
@@ -38,18 +43,15 @@ public class TestSSL extends TestCase {
 	@Override
 	protected void setUp() throws Exception {
 		super.setUp();
-		aradon = AradonTester.create().register("", "/", HelloLet.class).getAradon();
-		String configStr = "<connector-config port='9000' protocol='https' engine='jetty'>"
-				+ "<parameter name='keystorePath' description=''>./resource/keystore/keystore</parameter>\n"
-				+ "<parameter name='keystorePassword' description=''>password</parameter>\n"
-				+ "<parameter name='keystoreType' description=''>JKS</parameter>\n"
-				+ "<parameter name='keyPassword' description=''>password</parameter>\n"
-				+ "</connector-config>";
+		aradon = AradonTester.create().register("", "/hello", HelloLet.class).getAradon();
 
-		XMLConfig config = XMLConfig.load(configStr);
-
-		AradonTester at = AradonTester.create().register("", "/hello", HelloLet.class);
-		at.getAradon().startServer(ConnectorConfig.create(config, 9000));
+		Map<String, String> properties = MapUtil.<String>chainKeyMap()
+			.put("keystorePath", "./resource/keystore/keystore")
+			.put("keystorePassword", "password")
+			.put("keystoreType", "JKS")
+			.put("keyPassword", "password")
+			.toMap() ; 
+		aradon.startServer(ConnectorConfiguration.create(EngineType.Jetty, Protocol.HTTPS, 9000, properties ));
 	}
 
 	@Override
