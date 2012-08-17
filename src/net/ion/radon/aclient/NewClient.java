@@ -377,6 +377,7 @@ class HttpSerialRequest implements ISerialAsyncRequest {
 		builder.addHeader(name, value);
 		return this;
 	}
+	
 
 	public <V> ListenableFuture<V> delete(Class<? extends V> clz) {
 		return handle(Method.DELETE, "", clz);

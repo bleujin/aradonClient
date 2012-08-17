@@ -13,5 +13,6 @@ public interface ISerialAsyncRequest {
 	public ISerialAsyncRequest addHeader(String string, String string2);
 
 	public <T, V> ListenableFuture<V> handle(Method method, T arg, Class<? extends V> resultClass);
+	public RequestBuilder builder() ;
 
 }
