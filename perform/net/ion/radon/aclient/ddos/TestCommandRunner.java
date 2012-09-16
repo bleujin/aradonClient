@@ -2,22 +2,21 @@ package net.ion.radon.aclient.ddos;
 
 import java.io.Serializable;
 
-import org.restlet.data.Method;
-import org.restlet.resource.Post;
-
+import junit.framework.TestCase;
 import net.ion.framework.util.Debug;
 import net.ion.framework.util.InfinityThread;
-import net.ion.nradon.WebServer;
-import net.ion.nradon.WebServers;
+import net.ion.nradon.config.RadonConfiguration;
+import net.ion.nradon.config.RadonConfigurationBuilder;
 import net.ion.nradon.handler.aradon.AradonHandler;
 import net.ion.radon.aclient.NewClient;
 import net.ion.radon.core.Aradon;
-import net.ion.radon.core.config.ConnectorConfig;
 import net.ion.radon.core.config.ConnectorConfiguration;
 import net.ion.radon.core.let.AbstractServerResource;
 import net.ion.radon.impl.let.HelloWorldLet;
 import net.ion.radon.util.AradonTester;
-import junit.framework.TestCase;
+
+import org.restlet.data.Method;
+import org.restlet.resource.Post;
 
 public class TestCommandRunner extends TestCase{
 
@@ -43,12 +42,12 @@ public class TestCommandRunner extends TestCase{
 	
 	
 	public void xtestNewAradon() throws Exception {
-		WebServer server = WebServers.createWebServer(9000) ;
+		RadonConfigurationBuilder config = RadonConfiguration.newBuilder(9000) ;
 		
 		Aradon aradon = AradonTester.create().register("", "/hello", HelloWorldLet.class).getAradon(); 
-		server.add(AradonHandler.create(aradon)) ;
+		config.add(AradonHandler.create(aradon)) ;
 		
-		server.start() ;
+		config.startRadon() ;
 		new InfinityThread().startNJoin() ;
 	}
 	

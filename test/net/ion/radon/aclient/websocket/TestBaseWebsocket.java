@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import junit.framework.TestCase;
-import net.ion.nradon.WebServer;
-import net.ion.nradon.WebServers;
+import net.ion.nradon.Radon;
 import net.ion.nradon.WebSocketConnection;
 import net.ion.nradon.WebSocketHandler;
+import net.ion.nradon.config.RadonConfiguration;
 import net.ion.radon.aclient.ClientConfig;
 import net.ion.radon.aclient.NewClient;
 import net.ion.radon.aclient.providers.netty.NettyProvider;
@@ -15,11 +15,11 @@ import net.ion.radon.aclient.providers.netty.NettyProvider;
 public class TestBaseWebsocket extends TestCase{
 
 
-	private WebServer server ;
+	private Radon server ;
 	@Override
 	protected void setUp() throws Exception {
 		super.setUp();
-		server = WebServers.createWebServer(9000).add("/websocket/echo", new EchoWebSockets()).start() ;
+		server = RadonConfiguration.newBuilder(9000).add("/websocket/echo", new EchoWebSockets()).startRadon() ;
 	}
 	
 	@Override

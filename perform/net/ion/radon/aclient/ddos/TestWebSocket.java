@@ -1,12 +1,13 @@
 package net.ion.radon.aclient.ddos;
 
+import junit.framework.TestCase;
 import net.ion.framework.util.Debug;
 import net.ion.framework.util.InfinityThread;
 import net.ion.framework.util.ListUtil;
-import net.ion.nradon.WebServer;
-import net.ion.nradon.WebServers;
 import net.ion.nradon.WebSocketConnection;
 import net.ion.nradon.WebSocketHandler;
+import net.ion.nradon.config.RadonConfiguration;
+import net.ion.nradon.config.RadonConfigurationBuilder;
 import net.ion.nradon.handler.aradon.AradonHandler;
 import net.ion.radon.aclient.NewClient;
 import net.ion.radon.aclient.websocket.WebSocket;
@@ -14,15 +15,14 @@ import net.ion.radon.aclient.websocket.WebSocketListener;
 import net.ion.radon.core.Aradon;
 import net.ion.radon.impl.let.HelloWorldLet;
 import net.ion.radon.util.AradonTester;
-import junit.framework.TestCase;
 
 public class TestWebSocket extends TestCase {
 
 	public void xtestNewAradon() throws Exception {
-		WebServer server = WebServers.createWebServer(9000) ;
+		RadonConfigurationBuilder config = RadonConfiguration.newBuilder(9000) ;
 		
 		Aradon aradon = AradonTester.create().register("", "/hello", HelloWorldLet.class).getAradon(); 
-		server.add("/echo", new WebSocketHandler() {
+		config.add("/echo", new WebSocketHandler() {
 			
 			public void onPong(WebSocketConnection websocketconnection, String s) throws Throwable {
 				
@@ -44,9 +44,9 @@ public class TestWebSocket extends TestCase {
 				
 			}
 		}) ;
-		server.add(AradonHandler.create(aradon)) ;
+		config.add(AradonHandler.create(aradon)) ;
 		
-		server.start() ;
+		config.startRadon() ;
 		new InfinityThread().startNJoin() ;
 	}
 	
