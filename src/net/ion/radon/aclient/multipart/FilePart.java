@@ -56,7 +56,8 @@ public class FilePart extends PartBase {
 		if (filename != null) {
 			out.write(FILE_NAME_BYTES);
 			out.write(QUOTE_BYTES);
-			out.write(MultipartEncodingUtil.getAsciiBytes(filename));
+			// out.write(MultipartEncodingUtil.getAsciiBytes(filename));
+			out.write(filename.getBytes("UTF-8"));
 			out.write(QUOTE_BYTES);
 		}
 	}

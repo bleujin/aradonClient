@@ -20,6 +20,7 @@ public class TestWebSocket extends TestCase {
 
 	public void xtestNewAradon() throws Exception {
 		RadonConfigurationBuilder config = RadonConfiguration.newBuilder(9000) ;
+//		config.setupSsl(SslParameter.testCreate()) ;
 		
 		Aradon aradon = AradonTester.create().register("", "/hello", HelloWorldLet.class).getAradon(); 
 		config.add("/echo", new WebSocketHandler() {
@@ -49,6 +50,10 @@ public class TestWebSocket extends TestCase {
 		config.startRadon() ;
 		new InfinityThread().startNJoin() ;
 	}
+	
+	
+	
+	
 	
 	
 	public void testConnect() throws Exception {

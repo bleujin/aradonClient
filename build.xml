@@ -75,7 +75,7 @@
 		<copy file="publish/aclient_${version.number}.${build.number}.jar" todir="../MongoSearch/lib/" />
 
 		<echo>Copy to ToonStory</echo>
-		<copy file="publish/aclient_${version.number}.${build.number}.jar" todir="../../workspace/ToonServer/lib_source/aradon/" />
+		<copy file="publish/aclient_${version.number}.${build.number}.jar" todir="../../workspace/ToonServer/alone/lib/" />
 	</target>
 	
 </project>
