@@ -1,5 +1,6 @@
 package net.ion.radon.aclient;
 
+import net.ion.framework.util.Debug;
 import net.ion.framework.util.StringUtil;
 import net.ion.radon.aclient.ClientConfig.Builder;
 
@@ -22,6 +23,7 @@ public class TestCreateRequest extends TestBaseClient{
 	
 	public void testRequestBuilder() throws Exception {
 		RequestBuilder builder = new RequestBuilder(Method.POST) ;
+		builder.setBodyEncoding("UTF-8") ;
 		Request request = builder.setUrl(getEchoUri())
 			.addHeader("name", "value")
 			.addParameter("p1", "한글1")
@@ -29,6 +31,7 @@ public class TestCreateRequest extends TestBaseClient{
 			.addParameter("p2", "한글2")
 			.build() ;
 
+		Debug.line(request.getBodyEncoding()) ;
 		Response response = newClient().prepareRequest(request).execute().get() ;
 		Representation resEntity = new InputRepresentation(response.getBodyAsStream()) ;
 		Form resForm = new Form(resEntity) ;

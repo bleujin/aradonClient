@@ -435,7 +435,6 @@ public class MultipartBody implements RandomAccessBody {
 
 						if (nWrite == 0) {
 							try {
-								Debug.line("Waiting for writing...");
 								fc.wait(50);
 							} catch (InterruptedException ignore) {
 							}
@@ -538,8 +537,7 @@ public class MultipartBody implements RandomAccessBody {
 				written += nWrite;
 				if (nWrite == 0 && maxSpin++ < 10) {
 					try {
-						Debug.line("Waiting for writing...");
-						byteWriter.wait(1000);
+						byteWriter.wait(100);
 					} catch (InterruptedException ignore) {
 					}
 				} else {

@@ -65,7 +65,10 @@ class EchoWebSockets implements WebSocketHandler {
 	public void onMessage(WebSocketConnection connection, byte[] message) {
 	}
 
-	public void onPong(WebSocketConnection connection, String message) {
+	public void onPong(WebSocketConnection connection, byte[] message) {
+	}
+	public void onPing(WebSocketConnection connection, byte[] message) {
+		connection.pong(message) ;
 	}
 
 }

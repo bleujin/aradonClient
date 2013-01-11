@@ -25,8 +25,11 @@ public class TestWebSocket extends TestCase {
 		Aradon aradon = AradonTester.create().register("", "/hello", HelloWorldLet.class).getAradon(); 
 		config.add("/echo", new WebSocketHandler() {
 			
-			public void onPong(WebSocketConnection websocketconnection, String s) throws Throwable {
-				
+			public void onPong(WebSocketConnection websocketconnection, byte[] s) throws Throwable {
+			}
+			
+			public void onPing(WebSocketConnection websocketconnection, byte[] s) throws Throwable {
+				websocketconnection.pong(s) ;
 			}
 			
 			public void onOpen(WebSocketConnection websocketconnection) throws Exception {
