@@ -5,6 +5,9 @@ import java.io.InputStream;
 import java.net.URI;
 import java.util.List;
 
+import org.restlet.data.Status;
+
+import net.ion.framework.util.StringUtil;
 import net.ion.radon.aclient.FluentCaseInsensitiveStringsMap;
 import net.ion.radon.aclient.HttpResponseBodyPart;
 import net.ion.radon.aclient.HttpResponseHeaders;
@@ -26,6 +29,10 @@ public abstract class ResponseBase implements Response {
 		this.status = status;
 	}
 
+	public Status getStatus() {
+		return Status.valueOf(getStatusCode()) ;
+	}
+	
 	/* @Override */
 	public final int getStatusCode() {
 		return status.getStatusCode();
@@ -76,7 +83,13 @@ public abstract class ResponseBase implements Response {
 
 	/* @Override */
 	public String getTextBody() throws IOException {
-		return getTextBody(DEFAULT_CHARSET);
+		String contentType = getContentType();
+		String charset = null ;
+		if (contentType != null) {
+			charset = AsyncHttpProviderUtils.parseCharset(contentType);
+		}
+
+		return getTextBody(StringUtil.coalesce(charset, DEFAULT_CHARSET));
 	}
 
 	public String getUTF8Body() throws IOException {

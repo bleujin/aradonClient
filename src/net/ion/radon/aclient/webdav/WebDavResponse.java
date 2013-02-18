@@ -10,6 +10,7 @@ import net.ion.radon.aclient.Cookie;
 import net.ion.radon.aclient.FluentCaseInsensitiveStringsMap;
 import net.ion.radon.aclient.Response;
 
+import org.restlet.data.Status;
 import org.w3c.dom.Document;
 
 public class WebDavResponse implements Response {
@@ -22,6 +23,10 @@ public class WebDavResponse implements Response {
 		this.document = document;
 	}
 
+	public Status getStatus() {
+		return response.getStatus() ;
+	}	
+	
 	public int getStatusCode() {
 		return response.getStatusCode();
 	}

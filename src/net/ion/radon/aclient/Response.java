@@ -12,6 +12,8 @@ import org.restlet.data.Status;
 
 public interface Response {
 
+	public Status getStatus() ;
+	
 	public int getStatusCode();
 
 	public String getStatusText();
