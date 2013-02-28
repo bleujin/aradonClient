@@ -73,7 +73,8 @@ public class MultipartBody implements RandomAccessBody {
 			int maxLength = buffer.capacity();
 
 			if (startPart == parts.size() && endWritten) {
-				return overallLength;
+//				return overallLength;
+				return -1 ;
 			}
 
 			boolean full = false;

@@ -13,6 +13,6 @@
 	<classpathentry kind="lib" path="testlib/ApacheJMeter_core.jar"/>
 	<classpathentry kind="lib" path="lib/aradon_0.9.jar"/>
 	<classpathentry kind="lib" path="lib/rest_fat.jar"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jdk6_27"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
