@@ -117,6 +117,7 @@ import org.jboss.netty.handler.codec.http.HttpRequestEncoder;
 import org.jboss.netty.handler.codec.http.HttpResponse;
 import org.jboss.netty.handler.codec.http.HttpResponseDecoder;
 import org.jboss.netty.handler.codec.http.HttpVersion;
+import org.jboss.netty.handler.queue.BufferedWriteHandler;
 import org.jboss.netty.handler.ssl.SslHandler;
 import org.jboss.netty.handler.stream.ChunkedFile;
 import org.jboss.netty.handler.stream.ChunkedWriteHandler;
@@ -214,7 +215,7 @@ public class NettyProvider extends SimpleChannelUpstreamHandler implements Async
 
 	@Override
 	public String toString() {
-		return String.format("NettyAsyncHttpProvider:\n\t- maxConnections: %d\n\t- openChannels: %s\n\t- connectionPools: %s", config.getMaxTotalConnections() - freeConnections.availablePermits(), openChannels.toString(), connectionsPool.toString());
+		return String.format("NettyAsyncHttpProvider:\n\t- maxConnections: %d\n\t- openChannels: %s\n\t- connectionPools: %s", config.getMaxTotalConnections() - ((freeConnections == null) ? 0 : freeConnections.availablePermits()), openChannels.toString(), connectionsPool.toString());
 	}
 
 	void configureNetty() {

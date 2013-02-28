@@ -4,6 +4,7 @@ import static org.jboss.netty.buffer.ChannelBuffers.wrappedBuffer;
 
 import java.util.concurrent.ConcurrentLinkedQueue;
 
+import net.ion.framework.util.Debug;
 import net.ion.nradon.netty.codec.http.websocketx.BinaryWebSocketFrame;
 import net.ion.nradon.netty.codec.http.websocketx.PingWebSocketFrame;
 import net.ion.nradon.netty.codec.http.websocketx.PongWebSocketFrame;
@@ -15,18 +16,15 @@ import net.ion.radon.aclient.websocket.WebSocketListener;
 import net.ion.radon.aclient.websocket.WebSocketTextListener;
 
 import org.jboss.netty.channel.Channel;
+import org.jboss.netty.channel.ChannelFuture;
 
 public class NettyWebSocket implements WebSocket {
 	private final Channel channel;
 	private final ConcurrentLinkedQueue<WebSocketListener> listeners = new ConcurrentLinkedQueue<WebSocketListener>();
+	private ChannelFuture future;
 
 	public NettyWebSocket(Channel channel) {
 		this.channel = channel;
-	}
-
-	public WebSocket sendMessage(byte[] message) {
-		channel.write(new BinaryWebSocketFrame(wrappedBuffer(message)));
-		return this;
 	}
 
 	public WebSocket stream(byte[] fragment, boolean last) {
@@ -37,22 +35,38 @@ public class NettyWebSocket implements WebSocket {
 		throw new UnsupportedOperationException("Streaming currently not supported.");
 	}
 
-	public WebSocket sendTextMessage(String message) {
-		channel.write(new TextWebSocketFrame(message));
+	public WebSocket sendMessage(byte[] message) {
+		this.future = channel.write(new BinaryWebSocketFrame(wrappedBuffer(message)));
 		return this;
 	}
+
+	public WebSocket sendTextMessage(String message) {
+		this.future = channel.write(new TextWebSocketFrame(message));
+		return this;
+	}
+	
+	public void flush() {
+		if (future == null) return ;
+		
+		try {
+			future.await() ;
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
+
 
 	public WebSocket streamText(String fragment, boolean last) {
 		throw new UnsupportedOperationException("Streaming currently not supported.");
 	}
 
 	public WebSocket sendPing(byte[] payload) {
-		channel.write(new PingWebSocketFrame(wrappedBuffer(payload)));
+		this.future = channel.write(new PingWebSocketFrame(wrappedBuffer(payload)));
 		return this;
 	}
 
 	public WebSocket sendPong(byte[] payload) {
-		channel.write(new PongWebSocketFrame(wrappedBuffer(payload)));
+		this.future = channel.write(new PongWebSocketFrame(wrappedBuffer(payload)));
 		return this;
 	}
 
@@ -71,39 +85,41 @@ public class NettyWebSocket implements WebSocket {
 	}
 
 	public void close() {
+		flush() ;
+		
 		onClose();
 		listeners.clear();
 		channel.close();
 	}
 
 	protected void onMessage(byte[] message) {
-		for (WebSocketListener l : listeners) {
-			if (WebSocketByteListener.class.isAssignableFrom(l.getClass())) {
+		for (WebSocketListener listener : listeners) {
+			if (WebSocketByteListener.class.isAssignableFrom(listener.getClass())) {
 				try {
-					WebSocketByteListener.class.cast(l).onMessage(message);
+					WebSocketByteListener.class.cast(listener).onMessage(message);
 				} catch (Exception ex) {
-					l.onError(ex);
+					listener.onError(ex);
 				}
 			}
 		}
 	}
 
 	protected void onTextMessage(String message) {
-		for (WebSocketListener l : listeners) {
-			if (WebSocketTextListener.class.isAssignableFrom(l.getClass())) {
+		for (WebSocketListener listener : listeners) {
+			if (WebSocketTextListener.class.isAssignableFrom(listener.getClass())) {
 				try {
-					WebSocketTextListener.class.cast(l).onMessage(message);
+					WebSocketTextListener.class.cast(listener).onMessage(message);
 				} catch (Exception ex) {
-					l.onError(ex);
+					listener.onError(ex);
 				}
 			}
 		}
 	}
 
 	protected void onError(Throwable t) {
-		for (WebSocketListener l : listeners) {
+		for (WebSocketListener listener : listeners) {
 			try {
-				l.onError(t);
+				listener.onError(t);
 			} catch (Throwable ignore) {
 				ignore.printStackTrace() ;
 			}
@@ -116,14 +132,14 @@ public class NettyWebSocket implements WebSocket {
 	}
 
 	protected void onClose(int code, String reason) {
-		for (WebSocketListener l : listeners) {
+		for (WebSocketListener listener : listeners) {
 			try {
-				if (WebSocketCloseCodeReasonListener.class.isAssignableFrom(l.getClass())) {
-					WebSocketCloseCodeReasonListener.class.cast(l).onClose(this, code, reason);
+				if (WebSocketCloseCodeReasonListener.class.isAssignableFrom(listener.getClass())) {
+					WebSocketCloseCodeReasonListener.class.cast(listener).onClose(this, code, reason);
 				}
-				l.onClose(this);
+				listener.onClose(this);
 			} catch (Throwable t) {
-				l.onError(t);
+				listener.onError(t);
 			}
 		}
 	}

@@ -9,14 +9,17 @@ import java.io.InputStream;
 import java.io.RandomAccessFile;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
+import java.nio.channels.SelectionKey;
+import java.nio.channels.Selector;
+import java.nio.channels.SocketChannel;
 import java.nio.channels.WritableByteChannel;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
+import java.util.logging.Logger;
 
-import net.ion.framework.util.Debug;
+import net.ion.framework.logging.LogBroker;
 import net.ion.radon.aclient.RandomAccessBody;
-
-import org.apache.log4j.spi.LoggerFactory;
 
 public class MultipartBody implements RandomAccessBody {
 
@@ -25,6 +28,7 @@ public class MultipartBody implements RandomAccessBody {
 	private List<net.ion.radon.aclient.Part> parts;
 	private List<RandomAccessFile> files;
 	private int startPart;
+	private final static Logger logger = LogBroker.getLogger(MultipartBody.class);
 	ByteArrayInputStream currentStream;
 	int currentStreamPosition;
 	boolean endWritten;
@@ -180,7 +184,7 @@ public class MultipartBody implements RandomAccessBody {
 			return overallLength;
 
 		} catch (Exception e) {
-			e.printStackTrace() ;
+			logger.info("read exception" + e);
 			return 0;
 		}
 	}
@@ -428,15 +432,18 @@ public class MultipartBody implements RandomAccessBody {
 			synchronized (fc) {
 				while (fileLength != l) {
 					if (handler.isFailed()) {
+						logger.severe("Stalled error");
 						throw new FileUploadStalledException();
 					}
 					try {
 						nWrite = fc.transferTo(fileLength, l, target);
 
 						if (nWrite == 0) {
+							logger.info("Waiting for writing...");
 							try {
 								fc.wait(50);
-							} catch (InterruptedException ignore) {
+							} catch (InterruptedException e) {
+								logger.info(e.getMessage() + e);
 							}
 						} else {
 							handler.writeHappened();
@@ -448,9 +455,10 @@ public class MultipartBody implements RandomAccessBody {
 						if (message != null && message.equalsIgnoreCase("Resource temporarily unavailable")) {
 							try {
 								fc.wait(1000);
-							} catch (InterruptedException ignore) {
+							} catch (InterruptedException e) {
+								logger.info(e.getMessage() + e);
 							}
-							// Experiencing NIO issue http://bugs.sun.com/view_bug.do?bug_id=5103988. Retrying
+							logger.warning("Experiencing NIO issue http://bugs.sun.com/view_bug.do?bug_id=5103988. Retrying");
 							continue;
 						} else {
 							throw ex;
@@ -532,19 +540,46 @@ public class MultipartBody implements RandomAccessBody {
 		int maxSpin = 0;
 		synchronized (byteWriter) {
 			ByteBuffer message = ByteBuffer.wrap(byteWriter.toByteArray());
-			while ((target.isOpen()) && (written < byteWriter.size())) {
-				long nWrite = target.write(message);
-				written += nWrite;
-				if (nWrite == 0 && maxSpin++ < 10) {
-					try {
-						byteWriter.wait(100);
-					} catch (InterruptedException ignore) {
+
+			if (target instanceof SocketChannel) {
+				final Selector selector = Selector.open();
+				try {
+					final SocketChannel channel = (SocketChannel) target;
+					channel.register(selector, SelectionKey.OP_WRITE);
+
+					while (written < byteWriter.size() && selector.select() != 0) {
+						final Set<SelectionKey> selectedKeys = selector.selectedKeys();
+
+						for (SelectionKey key : selectedKeys) {
+							if (key.isWritable()) {
+								written += target.write(message);
+							}
+						}
 					}
-				} else {
-					if (maxSpin >= 10) {
+
+					if (written < byteWriter.size()) {
 						throw new IOException("Unable to write on channel " + target);
 					}
-					maxSpin = 0;
+				} finally {
+					selector.close();
+				}
+			} else {
+				while ((target.isOpen()) && (written < byteWriter.size())) {
+					long nWrite = target.write(message);
+					written += nWrite;
+					if (nWrite == 0 && maxSpin++ < 10) {
+						logger.info("Waiting for writing...");
+						try {
+							byteWriter.wait(1000);
+						} catch (InterruptedException e) {
+							logger.info(e.getMessage() + e);
+						}
+					} else {
+						if (maxSpin >= 10) {
+							throw new IOException("Unable to write on channel " + target);
+						}
+						maxSpin = 0;
+					}
 				}
 			}
 		}

@@ -22,6 +22,7 @@ public class TestWebSocket extends TestCase {
 		RadonConfigurationBuilder config = RadonConfiguration.newBuilder(9000) ;
 //		config.setupSsl(SslParameter.testCreate()) ;
 		
+		
 		Aradon aradon = AradonTester.create().register("", "/hello", HelloWorldLet.class).getAradon(); 
 		config.add("/echo", new WebSocketHandler() {
 			
@@ -69,13 +70,13 @@ public class TestWebSocket extends TestCase {
 			public void onClose(WebSocket websocket) {
 			}
 		};
+		NewClient nc = NewClient.create();
 		for (int i : ListUtil.rangeNum(100)) {
-			NewClient nc = NewClient.create();
 			WebSocket ws = nc.createWebSocket("ws://127.0.0.1:9000/echo", webSocketListener) ;
 			ws.sendTextMessage("Hello") ;
 			ws.close() ;
-			nc.close() ;
 		}
+		nc.close() ;
 	}
 	
 	
