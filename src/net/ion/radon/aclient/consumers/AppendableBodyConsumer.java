@@ -22,7 +22,7 @@ public class AppendableBodyConsumer implements BodyConsumer {
 	}
 
 	public void consume(ByteBuffer byteBuffer) throws IOException {
-		appendable.append(new String(byteBuffer.array(), encoding));
+		appendable.append(new String(byteBuffer.array(), byteBuffer.arrayOffset() + byteBuffer.position(), byteBuffer.remaining(), encoding));
 	}
 
 	public void close() throws IOException {

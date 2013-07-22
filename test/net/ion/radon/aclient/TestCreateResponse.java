@@ -13,6 +13,7 @@ public class TestCreateResponse extends TestBaseClient{
 		AsyncHandler<Response> ahandler = new AsyncHandler<Response>(){
 
 			private final Response.ResponseBuilder builder = new Response.ResponseBuilder() ;
+			
 			public net.ion.radon.aclient.AsyncHandler.STATE onBodyPartReceived(HttpResponseBodyPart bodyPart) throws Exception {
 				builder.accumulate(bodyPart) ;
 				return STATE.CONTINUE;
@@ -37,6 +38,8 @@ public class TestCreateResponse extends TestBaseClient{
 			}
 			
 		};
+		
+		
 		
 		Response response = newClient().prepareGet(getHelloUri()).execute(ahandler).get() ;
 		assertEquals("hello", response.getTextBody()) ;
