@@ -37,10 +37,10 @@ import javax.net.ssl.SSLHandshakeException;
 
 import net.ion.framework.util.IOUtil;
 import net.ion.radon.aclient.AsyncHandler;
-import net.ion.radon.aclient.ClientConfig;
 import net.ion.radon.aclient.AsyncHttpProvider;
 import net.ion.radon.aclient.AsyncHttpProviderConfig;
 import net.ion.radon.aclient.Body;
+import net.ion.radon.aclient.ClientConfig;
 import net.ion.radon.aclient.FluentCaseInsensitiveStringsMap;
 import net.ion.radon.aclient.HttpResponseBodyPart;
 import net.ion.radon.aclient.HttpResponseHeaders;
@@ -66,7 +66,6 @@ import net.ion.radon.aclient.util.ProxyUtils;
 import net.ion.radon.aclient.util.SslUtils;
 import net.ion.radon.aclient.util.UTF8UrlEncoder;
 
-import org.apache.log4j.spi.LoggerFactory;
 import org.restlet.data.Method;
 
 public class SimpleProvider implements AsyncHttpProvider {

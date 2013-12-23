@@ -6,8 +6,6 @@ import java.util.Random;
 
 import net.ion.radon.aclient.FluentStringsMap;
 
-import org.apache.log4j.spi.LoggerFactory;
-
 public class MultipartRequestEntity implements RequestEntity {
 
 	private static final String MULTIPART_FORM_CONTENT_TYPE = "multipart/form-data";

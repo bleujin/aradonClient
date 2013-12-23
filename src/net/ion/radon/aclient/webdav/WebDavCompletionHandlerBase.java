@@ -9,14 +9,12 @@ import java.util.List;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
-import net.ion.radon.aclient.AsyncCompletionHandlerBase;
 import net.ion.radon.aclient.AsyncHandler;
 import net.ion.radon.aclient.HttpResponseBodyPart;
 import net.ion.radon.aclient.HttpResponseHeaders;
 import net.ion.radon.aclient.HttpResponseStatus;
 import net.ion.radon.aclient.Response;
 
-import org.apache.log4j.spi.LoggerFactory;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;

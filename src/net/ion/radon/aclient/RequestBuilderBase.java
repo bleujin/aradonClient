@@ -18,7 +18,6 @@ import net.ion.framework.util.StringUtil;
 import net.ion.radon.aclient.Request.EntityWriter;
 import net.ion.radon.aclient.util.UTF8UrlEncoder;
 
-import org.apache.log4j.spi.LoggerFactory;
 import org.restlet.data.Method;
 
 public abstract class RequestBuilderBase<T extends RequestBuilderBase<T>> {

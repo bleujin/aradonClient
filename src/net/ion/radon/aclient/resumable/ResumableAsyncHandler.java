@@ -15,9 +15,6 @@ import net.ion.radon.aclient.Request;
 import net.ion.radon.aclient.RequestBuilder;
 import net.ion.radon.aclient.Response;
 import net.ion.radon.aclient.Response.ResponseBuilder;
-import net.ion.radon.aclient.listener.TransferCompletionHandler;
-
-import org.apache.log4j.spi.LoggerFactory;
 
 public class ResumableAsyncHandler implements AsyncHandler<Response> {
 	private final AtomicLong byteTransferred;

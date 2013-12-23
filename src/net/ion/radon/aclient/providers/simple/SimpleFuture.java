@@ -14,8 +14,6 @@ import java.util.concurrent.atomic.AtomicReference;
 import net.ion.radon.aclient.AsyncHandler;
 import net.ion.radon.aclient.listenable.AbstractListenableFuture;
 
-import org.apache.log4j.spi.LoggerFactory;
-
 public class SimpleFuture<V> extends AbstractListenableFuture<V> {
 
 	protected Future<V> innerFuture;

@@ -15,7 +15,6 @@ import net.ion.radon.aclient.resumable.ResumableIOExceptionFilter;
 import net.ion.radon.aclient.simple.HeaderMap;
 import net.ion.radon.aclient.simple.SimpleAHCTransferListener;
 
-import org.apache.log4j.spi.LoggerFactory;
 import org.restlet.data.Method;
 
 public class SimpleAsyncHttpClient {

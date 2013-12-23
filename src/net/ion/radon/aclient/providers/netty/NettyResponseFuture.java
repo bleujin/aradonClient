@@ -18,7 +18,6 @@ import net.ion.radon.aclient.AsyncHandler;
 import net.ion.radon.aclient.Request;
 import net.ion.radon.aclient.listenable.AbstractListenableFuture;
 
-import org.apache.log4j.spi.LoggerFactory;
 import org.jboss.netty.channel.Channel;
 import org.jboss.netty.handler.codec.http.HttpRequest;
 import org.jboss.netty.handler.codec.http.HttpResponse;

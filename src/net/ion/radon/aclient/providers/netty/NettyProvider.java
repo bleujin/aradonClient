@@ -36,10 +36,6 @@ import javax.net.ssl.SSLEngine;
 
 import net.ion.framework.util.Debug;
 import net.ion.framework.util.IOUtil;
-import net.ion.nradon.netty.codec.http.websocketx.CloseWebSocketFrame;
-import net.ion.nradon.netty.codec.http.websocketx.WebSocket08FrameDecoder;
-import net.ion.nradon.netty.codec.http.websocketx.WebSocket08FrameEncoder;
-import net.ion.nradon.netty.codec.http.websocketx.WebSocketFrame;
 import net.ion.radon.aclient.AsyncHandler;
 import net.ion.radon.aclient.AsyncHttpProvider;
 import net.ion.radon.aclient.Body;
@@ -72,6 +68,10 @@ import net.ion.radon.aclient.multipart.MultipartBody;
 import net.ion.radon.aclient.multipart.MultipartRequestEntity;
 import net.ion.radon.aclient.ntlm.NTLMEngine;
 import net.ion.radon.aclient.ntlm.NTLMEngineException;
+import net.ion.radon.aclient.providers.netty.codec.http.websocketx.CloseWebSocketFrame;
+import net.ion.radon.aclient.providers.netty.codec.http.websocketx.WebSocket08FrameDecoder;
+import net.ion.radon.aclient.providers.netty.codec.http.websocketx.WebSocket08FrameEncoder;
+import net.ion.radon.aclient.providers.netty.codec.http.websocketx.WebSocketFrame;
 import net.ion.radon.aclient.providers.netty.spnego.SpnegoEngine;
 import net.ion.radon.aclient.util.AsyncHttpProviderUtils;
 import net.ion.radon.aclient.util.AuthenticatorUtils;
@@ -117,7 +117,6 @@ import org.jboss.netty.handler.codec.http.HttpRequestEncoder;
 import org.jboss.netty.handler.codec.http.HttpResponse;
 import org.jboss.netty.handler.codec.http.HttpResponseDecoder;
 import org.jboss.netty.handler.codec.http.HttpVersion;
-import org.jboss.netty.handler.queue.BufferedWriteHandler;
 import org.jboss.netty.handler.ssl.SslHandler;
 import org.jboss.netty.handler.stream.ChunkedFile;
 import org.jboss.netty.handler.stream.ChunkedWriteHandler;
@@ -161,7 +160,7 @@ public class NettyProvider extends SimpleChannelUpstreamHandler implements Async
 	private final boolean trackConnections;
 	private final boolean useRawUrl;
 	private final static NTLMEngine ntlmEngine = new NTLMEngine();
-	private final static SpnegoEngine spnegoEngine = new SpnegoEngine();
+	private final static SpnegoEngine spnegoEngine = null;
 	private final Protocol httpProtocol = new HttpProtocol();
 	private final Protocol webSocketProtocol = new WebSocketProtocol();
 
@@ -619,7 +618,7 @@ public class NettyProvider extends SimpleChannelUpstreamHandler implements Async
 				String challengeHeader = null;
 				String server = proxyServer == null ? host : proxyServer.getHost();
 				try {
-					challengeHeader = spnegoEngine.generateToken(server);
+					challengeHeader = getSpnegoEngine().generateToken(server);
 				} catch (Throwable e) {
 					IOException ie = new IOException();
 					ie.initCause(e);
@@ -777,6 +776,14 @@ public class NettyProvider extends SimpleChannelUpstreamHandler implements Async
 			}
 		}
 		return nettyRequest;
+	}
+
+	private static SpnegoEngine getSpnegoEngine() {
+		if (spnegoEngine == null){
+			throw new IllegalStateException("not supported authentication scheme. call to bleujin") ;
+//			spnegoEngine = new SpnegoEngine();
+		}
+		return spnegoEngine;
 	}
 
 	public void close() {
@@ -1074,7 +1081,7 @@ public class NettyProvider extends SimpleChannelUpstreamHandler implements Async
 		String host = request.getVirtualHost() == null ? AsyncHttpProviderUtils.getHost(uri) : request.getVirtualHost();
 		String server = proxyServer == null ? host : proxyServer.getHost();
 		try {
-			String challengeHeader = spnegoEngine.generateToken(server);
+			String challengeHeader = getSpnegoEngine().generateToken(server);
 			headers.remove(HttpHeaders.Names.AUTHORIZATION);
 			headers.add(HttpHeaders.Names.AUTHORIZATION, "Negotiate " + challengeHeader);
 

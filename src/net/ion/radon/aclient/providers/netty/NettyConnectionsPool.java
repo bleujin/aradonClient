@@ -11,7 +11,6 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import net.ion.framework.util.Debug;
 import net.ion.radon.aclient.ConnectionsPool;
 
-import org.apache.log4j.spi.LoggerFactory;
 import org.jboss.netty.channel.Channel;
 
 /**

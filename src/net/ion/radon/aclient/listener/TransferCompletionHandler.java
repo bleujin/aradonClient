@@ -13,8 +13,6 @@ import net.ion.radon.aclient.HttpResponseBodyPart;
 import net.ion.radon.aclient.HttpResponseHeaders;
 import net.ion.radon.aclient.Response;
 
-import org.apache.log4j.spi.LoggerFactory;
-
 public class TransferCompletionHandler extends AsyncCompletionHandlerBase {
 	private final ConcurrentLinkedQueue<TransferListener> listeners = new ConcurrentLinkedQueue<TransferListener>();
 	private final boolean accumulateResponseBytes;

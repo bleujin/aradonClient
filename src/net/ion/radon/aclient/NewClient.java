@@ -1,21 +1,17 @@
 package net.ion.radon.aclient;
 
-import java.io.ByteArrayInputStream;
 import java.io.Closeable;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import net.ion.framework.util.Debug;
 import net.ion.framework.util.IOUtil;
-import net.ion.radon.aclient.AsyncHandler.STATE;
 import net.ion.radon.aclient.Request.EntityWriter;
 import net.ion.radon.aclient.filter.FilterContext;
 import net.ion.radon.aclient.filter.FilterException;

@@ -1,7 +1,5 @@
 package net.ion.radon.aclient;
 
-import java.io.IOException;
-
 import org.restlet.data.Method;
 
 public interface ISerialAsyncRequest {

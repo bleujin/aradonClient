@@ -12,7 +12,6 @@ import net.ion.radon.aclient.AsyncHandler;
 import net.ion.radon.aclient.ClientConfig;
 import net.ion.radon.aclient.Request;
 
-import org.apache.log4j.spi.LoggerFactory;
 import org.jboss.netty.buffer.ChannelBuffer;
 import org.jboss.netty.channel.Channel;
 import org.jboss.netty.channel.ChannelFuture;

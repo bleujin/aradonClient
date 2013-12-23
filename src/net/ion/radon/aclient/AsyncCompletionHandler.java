@@ -1,5 +1,7 @@
 package net.ion.radon.aclient;
 
+import net.ion.framework.util.IOUtil;
+
 
 public abstract class AsyncCompletionHandler<T> implements AsyncHandler<T>, ProgressAsyncHandler<T> {
 
@@ -22,7 +24,13 @@ public abstract class AsyncCompletionHandler<T> implements AsyncHandler<T>, Prog
 	}
 
 	public final T onCompleted() throws Exception {
-		return onCompleted(builder.build());
+		final Response response = builder.build();
+		try {
+			T result = onCompleted(response);
+			return result ;
+		} finally {
+			IOUtil.closeQuietly(response.getBodyAsStream()) ;
+		}
 	}
 
 	public void onThrowable(Throwable t) {

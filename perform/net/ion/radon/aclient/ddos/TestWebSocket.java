@@ -72,7 +72,7 @@ public class TestWebSocket extends TestCase {
 		};
 		NewClient nc = NewClient.create();
 		for (int i : ListUtil.rangeNum(100)) {
-			WebSocket ws = nc.createWebSocket("ws://127.0.0.1:9000/echo", webSocketListener) ;
+			WebSocket ws = nc.createWebSocket("ws://127.0.0.1:9000/websocket/echo", webSocketListener) ;
 			ws.sendTextMessage("Hello") ;
 			ws.close() ;
 		}

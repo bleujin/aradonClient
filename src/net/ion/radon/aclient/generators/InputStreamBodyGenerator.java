@@ -8,8 +8,6 @@ import net.ion.framework.util.Debug;
 import net.ion.radon.aclient.Body;
 import net.ion.radon.aclient.BodyGenerator;
 
-import org.apache.log4j.spi.LoggerFactory;
-
 public class InputStreamBodyGenerator implements BodyGenerator {
 
 	private final static byte[] END_PADDING = "\r\n".getBytes();

@@ -10,8 +10,6 @@ import java.util.concurrent.ConcurrentHashMap;
 import net.ion.framework.util.Debug;
 import net.ion.framework.util.IOUtil;
 
-import org.apache.log4j.spi.LoggerFactory;
-
 public class PropertiesBasedResumableProcessor implements ResumableAsyncHandler.ResumableProcessor {
 	private final static File TMP = new File(System.getProperty("java.io.tmpdir"), "ahc");
 	private final static String storeName = "ResumableAsyncHandler.properties";

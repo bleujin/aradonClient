@@ -29,7 +29,6 @@ import java.io.IOException;
 
 import net.ion.radon.aclient.util.Base64;
 
-import org.apache.log4j.spi.LoggerFactory;
 import org.ietf.jgss.GSSContext;
 import org.ietf.jgss.GSSException;
 import org.ietf.jgss.GSSManager;
