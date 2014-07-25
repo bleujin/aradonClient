@@ -37,6 +37,7 @@ import javax.net.ssl.SSLEngine;
 import net.ion.framework.util.Debug;
 import net.ion.framework.util.IOUtil;
 import net.ion.radon.aclient.AsyncHandler;
+import net.ion.radon.aclient.AsyncHandler.STATE;
 import net.ion.radon.aclient.AsyncHttpProvider;
 import net.ion.radon.aclient.Body;
 import net.ion.radon.aclient.BodyGenerator;
@@ -57,7 +58,6 @@ import net.ion.radon.aclient.Realm;
 import net.ion.radon.aclient.Request;
 import net.ion.radon.aclient.RequestBuilder;
 import net.ion.radon.aclient.Response;
-import net.ion.radon.aclient.AsyncHandler.STATE;
 import net.ion.radon.aclient.filter.FilterContext;
 import net.ion.radon.aclient.filter.FilterException;
 import net.ion.radon.aclient.filter.IOExceptionFilter;
@@ -120,7 +120,6 @@ import org.jboss.netty.handler.codec.http.HttpVersion;
 import org.jboss.netty.handler.ssl.SslHandler;
 import org.jboss.netty.handler.stream.ChunkedFile;
 import org.jboss.netty.handler.stream.ChunkedWriteHandler;
-import org.restlet.data.Method;
 
 public class NettyProvider extends SimpleChannelUpstreamHandler implements AsyncHttpProvider {
 	private final static String WEBSOCKET_KEY = "Sec-WebSocket-Key";
@@ -367,7 +366,7 @@ public class NettyProvider extends SimpleChannelUpstreamHandler implements Async
 			}
 
 			Body body = null;
-			if (!future.getNettyRequest().getMethod().equals(Method.CONNECT)) {
+			if (!future.getNettyRequest().getMethod().equals(HttpMethod.CONNECT)) {
 				BodyGenerator bg = future.getRequest().getBodyGenerator();
 				if (bg != null) {
 					// Netty issue with chunking.
@@ -419,7 +418,7 @@ public class NettyProvider extends SimpleChannelUpstreamHandler implements Async
 			}
 
 			if (future.getAndSetWriteBody(true)) {
-				if (!future.getNettyRequest().getMethod().equals(Method.CONNECT)) {
+				if (!future.getNettyRequest().getMethod().equals(HttpMethod.CONNECT)) {
 
 					if (future.getRequest().getFile() != null) {
 						final File file = future.getRequest().getFile();
@@ -504,14 +503,14 @@ public class NettyProvider extends SimpleChannelUpstreamHandler implements Async
 
 	protected final static HttpRequest buildRequest(ClientConfig config, Request request, URI uri, boolean allowConnect, ChannelBuffer buffer) throws IOException {
 
-		Method method = request.getMethod();
+		HttpMethod method = request.getMethod();
 		if (allowConnect && (isProxyServer(config, request) && isSecure(uri))) {
-			method = Method.CONNECT;
+			method = HttpMethod.CONNECT;
 		}
 		return construct(config, request, method, uri, buffer);
 	}
 
-	private static HttpRequest construct(ClientConfig config, Request request, Method m, URI uri, ChannelBuffer buffer) throws IOException {
+	private static HttpRequest construct(ClientConfig config, Request request, HttpMethod m, URI uri, ChannelBuffer buffer) throws IOException {
 
 		String host = AsyncHttpProviderUtils.getHost(uri);
 
@@ -520,7 +519,7 @@ public class NettyProvider extends SimpleChannelUpstreamHandler implements Async
 		}
 
 		HttpRequest nettyRequest;
-		if (m.equals(Method.CONNECT)) {
+		if (m.equals(HttpMethod.CONNECT)) {
 			nettyRequest = new DefaultHttpRequest(HttpVersion.HTTP_1_0, HttpMethod.valueOf(m.getName()), AsyncHttpProviderUtils.getAuthority(uri));
 		} else {
 			StringBuilder path = null;
@@ -555,7 +554,7 @@ public class NettyProvider extends SimpleChannelUpstreamHandler implements Async
 			host = "127.0.0.1";
 		}
 
-		if (!m.equals(Method.CONNECT)) {
+		if (!m.equals(HttpMethod.CONNECT)) {
 			FluentCaseInsensitiveStringsMap h = request.getHeaders();
 			if (h != null) {
 				for (String name : h.keySet()) {
@@ -676,7 +675,7 @@ public class NettyProvider extends SimpleChannelUpstreamHandler implements Async
 			nettyRequest.setHeader("User-Agent", AsyncHttpProviderUtils.constructUserAgent(NettyProvider.class));
 		}
 
-		if (!m.equals(Method.CONNECT)) {
+		if (!m.equals(HttpMethod.CONNECT)) {
 			if (request.getCookies() != null && !request.getCookies().isEmpty()) {
 				CookieEncoder httpCookieEncoder = new CookieEncoder(false);
 				Iterator<Cookie> ic = request.getCookies().iterator();
@@ -693,8 +692,8 @@ public class NettyProvider extends SimpleChannelUpstreamHandler implements Async
 				nettyRequest.setHeader(HttpHeaders.Names.COOKIE, httpCookieEncoder.encode());
 			}
 
-			Method reqType = request.getMethod();
-			if (!Method.GET.equals(reqType) && !Method.HEAD.equals(reqType) && !Method.OPTIONS.equals(reqType) && !Method.TRACE.equals(reqType)) {
+			HttpMethod reqType = request.getMethod();
+			if (!HttpMethod.GET.equals(reqType) && !HttpMethod.HEAD.equals(reqType) && !HttpMethod.OPTIONS.equals(reqType) && !HttpMethod.TRACE.equals(reqType)) {
 
 				String bodyCharset = request.getBodyEncoding() == null ? DEFAULT_CHARSET : request.getBodyEncoding();
 
@@ -857,7 +856,7 @@ public class NettyProvider extends SimpleChannelUpstreamHandler implements Async
 		}
 
 		ChannelBuffer bufferedBytes = null;
-		if (f != null && f.getRequest().getFile() == null && !f.getNettyRequest().getMethod().getName().equals(Method.CONNECT.getName())) {
+		if (f != null && f.getRequest().getFile() == null && !f.getNettyRequest().getMethod().getName().equals(HttpMethod.CONNECT.getName())) {
 			bufferedBytes = f.getNettyRequest().getContent();
 		}
 
@@ -1815,7 +1814,7 @@ public class NettyProvider extends SimpleChannelUpstreamHandler implements Async
 	}
 
 	private static final boolean validateWebSocketRequest(Request request, AsyncHandler<?> asyncHandler) {
-		if ((!request.getMethod().equals(Method.GET)) || !WebSocketUpgradeHandler.class.isAssignableFrom(asyncHandler.getClass())) {
+		if ((!request.getMethod().equals(HttpMethod.GET)) || !WebSocketUpgradeHandler.class.isAssignableFrom(asyncHandler.getClass())) {
 			return false;
 		}
 		return true;
@@ -1838,7 +1837,7 @@ public class NettyProvider extends SimpleChannelUpstreamHandler implements Async
 					final RequestBuilder nBuilder = stripQueryString ? new RequestBuilder(future.getRequest()).setQueryParameters(null) : new RequestBuilder(future.getRequest());
 
 					if (!(statusCode < 302 || statusCode > 303) && !(statusCode == 302 && config.isStrict302Handling())) {
-						nBuilder.setMethod(Method.GET);
+						nBuilder.setMethod(HttpMethod.GET);
 					}
 					final URI initialConnectionUri = future.getURI();
 					final boolean initialConnectionKeepAlive = future.getKeepAlive();
@@ -2019,7 +2018,7 @@ public class NettyProvider extends SimpleChannelUpstreamHandler implements Async
 						return;
 					}
 
-					if (future.getNettyRequest().getMethod().getName().equals(Method.CONNECT.getName()) && statusCode == 200) {
+					if (future.getNettyRequest().getMethod().getName().equals(HttpMethod.CONNECT.getName()) && statusCode == 200) {
 
 						if (future.getKeepAlive()) {
 							future.attachChannel(ctx.getChannel(), true);
@@ -2054,7 +2053,7 @@ public class NettyProvider extends SimpleChannelUpstreamHandler implements Async
 						return;
 					}
 
-					if (nettyRequest.getMethod().getName().equals(Method.HEAD.getName())) {
+					if (nettyRequest.getMethod().getName().equals(HttpMethod.HEAD.getName())) {
 						updateBodyAndInterrupt(future, handler, new ResponseBodyPart(future.getURI(), response, NettyProvider.this, true));
 						markAsDone(future, ctx);
 						drainChannel(ctx, future, future.getKeepAlive(), future.getURI());

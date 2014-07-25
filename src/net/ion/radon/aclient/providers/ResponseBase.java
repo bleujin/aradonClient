@@ -11,9 +11,9 @@ import net.ion.radon.aclient.HttpResponseBodyPart;
 import net.ion.radon.aclient.HttpResponseHeaders;
 import net.ion.radon.aclient.HttpResponseStatus;
 import net.ion.radon.aclient.Response;
+import net.ion.radon.aclient.Status;
 import net.ion.radon.aclient.util.AsyncHttpProviderUtils;
 
-import org.restlet.data.Status;
 
 public abstract class ResponseBase implements Response {
 	protected final static String DEFAULT_CHARSET = "ISO-8859-1";

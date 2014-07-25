@@ -1,46 +1,46 @@
 package net.ion.radon.aclient.filter;
 
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+
+import junit.framework.TestCase;
+import net.ion.nradon.Radon;
+import net.ion.nradon.config.RadonConfiguration;
 import net.ion.radon.aclient.ClientConfig;
-import net.ion.radon.aclient.NewClient;
-import net.ion.radon.aclient.TestBaseClient;
 import net.ion.radon.aclient.ClientConfig.Builder;
-import net.ion.radon.core.config.ConnectorConfig;
-import net.ion.radon.core.config.ConnectorConfiguration;
-import net.ion.radon.core.let.AbstractServerResource;
-import net.ion.radon.util.AradonTester;
+import net.ion.radon.aclient.NewClient;
+import net.ion.radon.core.let.PathHandler;
 
-import org.restlet.resource.Get;
+public class TestPerf extends TestCase {
 
-public class TestPerf extends TestBaseClient {
-
-	@Override
+	private Radon radon;
 	protected void setUp() throws Exception {
-		aradon = AradonTester.create()
-			.register("", "/hello", TestLet.class)
-			.getAradon() ;
-		aradon.startServer(ConnectorConfiguration.makeSimpleHTTPConfig(9000)) ;
-		
+		this.radon = RadonConfiguration.newBuilder(9000).add(new PathHandler(TestLet.class)).start().get() ;
+	}
+	
+	protected void tearDown() throws Exception {
+		radon.stop().get() ;
+		super.tearDown();
 	}
 
 	
 	public void testManyRequest() throws Exception {
-		Thread.sleep(1000) ;
 		Builder builder = new ClientConfig.Builder() ;
 		builder.addRequestFilter(new ThrottleFilter(200)) ;
 		
 		NewClient c = NewClient.create(builder.build()) ;
-		
 		for (int i = 0; i < 2000; i++) {
-			c.prepareGet(getHelloUri()).execute() ;
+			c.prepareGet("http://localhost:9000/hello").execute() ;
 		}
 		c.close();
 	}
 }
 
 
-class TestLet extends AbstractServerResource {
+@Path("/hello")
+class TestLet {
 	
-	@Get
+	@GET
 	public String hello(){
 		return "hello" ;
 	}

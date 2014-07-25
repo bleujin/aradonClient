@@ -3,33 +3,19 @@ package net.ion.radon.aclient.auth;
 import java.io.StringReader;
 import java.util.Map;
 
+import junit.framework.TestCase;
 import net.ion.framework.parse.html.HTag;
 import net.ion.framework.util.Debug;
 import net.ion.framework.util.MapUtil;
 import net.ion.framework.util.StringUtil;
 import net.ion.radon.aclient.AsyncCompletionHandler;
 import net.ion.radon.aclient.NewClient;
-import net.ion.radon.aclient.Realm;
 import net.ion.radon.aclient.Response;
-import net.ion.radon.aclient.TestBaseClient;
-import net.ion.radon.aclient.Realm.AuthScheme;
 import net.ion.radon.aclient.oauth.ConsumerKey;
 import net.ion.radon.aclient.oauth.OAuthSignatureCalculator;
 import net.ion.radon.aclient.oauth.RequestToken;
 
-public class TestAuthentication extends TestBaseClient {
-
-	public void testBasic() throws Exception {
-		NewClient c = newClient();
-		Response response = c.prepareGet(getSecureHelloUri()).execute().get();
-
-		assertEquals(401, response.getStatusCode());
-
-		Realm realm = new Realm.RealmBuilder().setPrincipal("bleujin").setPassword("redf").setUsePreemptiveAuth(true).setScheme(AuthScheme.BASIC).build();
-		response = c.prepareGet(getSecureHelloUri()).setRealm(realm).execute().get();
-		assertEquals(200, response.getStatusCode());
-		assertEquals("hello", response.getTextBody());
-	}
+public class TestAuthentication extends TestCase{
 
 	public void xtestOAuth() throws Exception {
 		String consumerKey = "gwQomTlxTCr4fGPiUXnrQ"; // bleujinSample
@@ -39,7 +25,7 @@ public class TestAuthentication extends TestBaseClient {
 		
 		OAuthSignatureCalculator calc = new OAuthSignatureCalculator(consumer, new RequestToken("", "")) ;
 		
-		NewClient client = newClient() ;
+		NewClient client = NewClient.create() ;
 		
 		AuthData auth = client.preparePost("https://api.twitter.com/oauth/request_token")
 			.setSignatureCalculator(calc)

@@ -15,7 +15,7 @@ import net.ion.radon.aclient.resumable.ResumableIOExceptionFilter;
 import net.ion.radon.aclient.simple.HeaderMap;
 import net.ion.radon.aclient.simple.SimpleAHCTransferListener;
 
-import org.restlet.data.Method;
+import org.jboss.netty.handler.codec.http.HttpMethod;
 
 public class SimpleAsyncHttpClient {
 
@@ -42,7 +42,7 @@ public class SimpleAsyncHttpClient {
 
 	public Future<Response> post(Part... parts) throws IOException {
 		RequestBuilder r = rebuildRequest(requestBuilder.build());
-		r.setMethod(Method.POST);
+		r.setMethod(HttpMethod.POST);
 
 		for (Part part : parts) {
 			r.addBodyPart(part);
@@ -53,7 +53,7 @@ public class SimpleAsyncHttpClient {
 
 	public Future<Response> post(BodyConsumer consumer, Part... parts) throws IOException {
 		RequestBuilder r = rebuildRequest(requestBuilder.build());
-		r.setMethod(Method.POST);
+		r.setMethod(HttpMethod.POST);
 
 		for (Part part : parts) {
 			r.addBodyPart(part);
@@ -64,35 +64,35 @@ public class SimpleAsyncHttpClient {
 
 	public Future<Response> post(BodyGenerator bodyGenerator) throws IOException {
 		RequestBuilder r = rebuildRequest(requestBuilder.build());
-		r.setMethod(Method.POST);
+		r.setMethod(HttpMethod.POST);
 		r.setBody(bodyGenerator);
 		return execute(r, null, null);
 	}
 
 	public Future<Response> post(BodyGenerator bodyGenerator, ThrowableHandler throwableHandler) throws IOException {
 		RequestBuilder r = rebuildRequest(requestBuilder.build());
-		r.setMethod(Method.POST);
+		r.setMethod(HttpMethod.POST);
 		r.setBody(bodyGenerator);
 		return execute(r, null, throwableHandler);
 	}
 
 	public Future<Response> post(BodyGenerator bodyGenerator, BodyConsumer bodyConsumer) throws IOException {
 		RequestBuilder r = rebuildRequest(requestBuilder.build());
-		r.setMethod(Method.POST);
+		r.setMethod(HttpMethod.POST);
 		r.setBody(bodyGenerator);
 		return execute(r, bodyConsumer, null);
 	}
 
 	public Future<Response> post(BodyGenerator bodyGenerator, BodyConsumer bodyConsumer, ThrowableHandler throwableHandler) throws IOException {
 		RequestBuilder r = rebuildRequest(requestBuilder.build());
-		r.setMethod(Method.PUT);
+		r.setMethod(HttpMethod.PUT);
 		r.setBody(bodyGenerator);
 		return execute(r, bodyConsumer, throwableHandler);
 	}
 
 	public Future<Response> put(Part... parts) throws IOException {
 		RequestBuilder r = rebuildRequest(requestBuilder.build());
-		r.setMethod(Method.PUT);
+		r.setMethod(HttpMethod.PUT);
 
 		for (Part part : parts) {
 			r.addBodyPart(part);
@@ -103,7 +103,7 @@ public class SimpleAsyncHttpClient {
 
 	public Future<Response> put(BodyConsumer consumer, Part... parts) throws IOException {
 		RequestBuilder r = rebuildRequest(requestBuilder.build());
-		r.setMethod(Method.PUT);
+		r.setMethod(HttpMethod.PUT);
 
 		for (Part part : parts) {
 			r.addBodyPart(part);
@@ -114,28 +114,28 @@ public class SimpleAsyncHttpClient {
 
 	public Future<Response> put(BodyGenerator bodyGenerator, BodyConsumer bodyConsumer) throws IOException {
 		RequestBuilder r = rebuildRequest(requestBuilder.build());
-		r.setMethod(Method.PUT);
+		r.setMethod(HttpMethod.PUT);
 		r.setBody(bodyGenerator);
 		return execute(r, bodyConsumer, null);
 	}
 
 	public Future<Response> put(BodyGenerator bodyGenerator, BodyConsumer bodyConsumer, ThrowableHandler throwableHandler) throws IOException {
 		RequestBuilder r = rebuildRequest(requestBuilder.build());
-		r.setMethod(Method.PUT);
+		r.setMethod(HttpMethod.PUT);
 		r.setBody(bodyGenerator);
 		return execute(r, bodyConsumer, throwableHandler);
 	}
 
 	public Future<Response> put(BodyGenerator bodyGenerator) throws IOException {
 		RequestBuilder r = rebuildRequest(requestBuilder.build());
-		r.setMethod(Method.PUT);
+		r.setMethod(HttpMethod.PUT);
 		r.setBody(bodyGenerator);
 		return execute(r, null, null);
 	}
 
 	public Future<Response> put(BodyGenerator bodyGenerator, ThrowableHandler throwableHandler) throws IOException {
 		RequestBuilder r = rebuildRequest(requestBuilder.build());
-		r.setMethod(Method.PUT);
+		r.setMethod(HttpMethod.PUT);
 		r.setBody(bodyGenerator);
 		return execute(r, null, throwableHandler);
 	}
@@ -162,61 +162,61 @@ public class SimpleAsyncHttpClient {
 
 	public Future<Response> delete() throws IOException {
 		RequestBuilder r = rebuildRequest(requestBuilder.build());
-		r.setMethod(Method.DELETE);
+		r.setMethod(HttpMethod.DELETE);
 		return execute(r, null, null);
 	}
 
 	public Future<Response> delete(ThrowableHandler throwableHandler) throws IOException {
 		RequestBuilder r = rebuildRequest(requestBuilder.build());
-		r.setMethod(Method.DELETE);
+		r.setMethod(HttpMethod.DELETE);
 		return execute(r, null, throwableHandler);
 	}
 
 	public Future<Response> delete(BodyConsumer bodyConsumer) throws IOException {
 		RequestBuilder r = rebuildRequest(requestBuilder.build());
-		r.setMethod(Method.DELETE);
+		r.setMethod(HttpMethod.DELETE);
 		return execute(r, bodyConsumer, null);
 	}
 
 	public Future<Response> delete(BodyConsumer bodyConsumer, ThrowableHandler throwableHandler) throws IOException {
 		RequestBuilder r = rebuildRequest(requestBuilder.build());
-		r.setMethod(Method.DELETE);
+		r.setMethod(HttpMethod.DELETE);
 		return execute(r, bodyConsumer, throwableHandler);
 	}
 
 	public Future<Response> head() throws IOException {
 		RequestBuilder r = rebuildRequest(requestBuilder.build());
-		r.setMethod(Method.HEAD);
+		r.setMethod(HttpMethod.HEAD);
 		return execute(r, null, null);
 	}
 
 	public Future<Response> head(ThrowableHandler throwableHandler) throws IOException {
 		RequestBuilder r = rebuildRequest(requestBuilder.build());
-		r.setMethod(Method.HEAD);
+		r.setMethod(HttpMethod.HEAD);
 		return execute(r, null, throwableHandler);
 	}
 
 	public Future<Response> options() throws IOException {
 		RequestBuilder r = rebuildRequest(requestBuilder.build());
-		r.setMethod(Method.OPTIONS);
+		r.setMethod(HttpMethod.OPTIONS);
 		return execute(r, null, null);
 	}
 
 	public Future<Response> options(ThrowableHandler throwableHandler) throws IOException {
 		RequestBuilder r = rebuildRequest(requestBuilder.build());
-		r.setMethod(Method.OPTIONS);
+		r.setMethod(HttpMethod.OPTIONS);
 		return execute(r, null, throwableHandler);
 	}
 
 	public Future<Response> options(BodyConsumer bodyConsumer) throws IOException {
 		RequestBuilder r = rebuildRequest(requestBuilder.build());
-		r.setMethod(Method.OPTIONS);
+		r.setMethod(HttpMethod.OPTIONS);
 		return execute(r, bodyConsumer, null);
 	}
 
 	public Future<Response> options(BodyConsumer bodyConsumer, ThrowableHandler throwableHandler) throws IOException {
 		RequestBuilder r = rebuildRequest(requestBuilder.build());
-		r.setMethod(Method.OPTIONS);
+		r.setMethod(HttpMethod.OPTIONS);
 		return execute(r, bodyConsumer, throwableHandler);
 	}
 
@@ -232,7 +232,7 @@ public class SimpleAsyncHttpClient {
 		Request request = rb.build();
 		ProgressAsyncHandler<Response> handler = new BodyConsumerAsyncHandler(bodyConsumer, throwableHandler, errorDocumentBehaviour, request.getUrl(), listener);
 
-		if (resumeEnabled && request.getMethod().equals(Method.GET) && bodyConsumer != null && bodyConsumer instanceof ResumableBodyConsumer) {
+		if (resumeEnabled && request.getMethod().equals(HttpMethod.GET) && bodyConsumer != null && bodyConsumer instanceof ResumableBodyConsumer) {
 			ResumableBodyConsumer fileBodyConsumer = (ResumableBodyConsumer) bodyConsumer;
 			long length = fileBodyConsumer.getTransferredBytes();
 			fileBodyConsumer.resume();
@@ -316,7 +316,7 @@ public class SimpleAsyncHttpClient {
 		private SimpleAHCTransferListener listener = null;
 
 		public Builder() {
-			requestBuilder = new RequestBuilder(Method.GET, false);
+			requestBuilder = new RequestBuilder(HttpMethod.GET, false);
 		}
 
 		private Builder(SimpleAsyncHttpClient client) {

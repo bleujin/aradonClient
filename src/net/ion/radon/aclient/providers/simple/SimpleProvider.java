@@ -66,7 +66,7 @@ import net.ion.radon.aclient.util.ProxyUtils;
 import net.ion.radon.aclient.util.SslUtils;
 import net.ion.radon.aclient.util.UTF8UrlEncoder;
 
-import org.restlet.data.Method;
+import org.jboss.netty.handler.codec.http.HttpMethod;
 
 public class SimpleProvider implements AsyncHttpProvider {
 	private final static String NTLM_DOMAIN = "http.auth.ntlm.domain";
@@ -326,7 +326,7 @@ public class SimpleProvider implements AsyncHttpProvider {
 						}
 					}
 
-					if (request.getMethod().equals(Method.HEAD)) {
+					if (request.getMethod().equals(HttpMethod.HEAD)) {
 						asyncHandler.onBodyPartReceived(new ResponseBodyPart(uri, "".getBytes(), SimpleProvider.this, true));
 					}
 				}
@@ -431,7 +431,7 @@ public class SimpleProvider implements AsyncHttpProvider {
 
 			urlConnection.setInstanceFollowRedirects(false);
 			String host = uri.getHost();
-			Method method = request.getMethod();
+			HttpMethod method = request.getMethod();
 
 			if (request.getVirtualHost() != null) {
 				host = request.getVirtualHost();
@@ -447,7 +447,7 @@ public class SimpleProvider implements AsyncHttpProvider {
 				urlConnection.setRequestProperty("Accept-Encoding", "gzip");
 			}
 
-			if (!method.equals(Method.CONNECT)) {
+			if (!method.equals(HttpMethod.CONNECT)) {
 				FluentCaseInsensitiveStringsMap h = request.getHeaders();
 				if (h != null) {
 					for (String name : h.keySet()) {
@@ -523,10 +523,10 @@ public class SimpleProvider implements AsyncHttpProvider {
 				urlConnection.setRequestProperty("Cookie", AsyncHttpProviderUtils.encodeCookies(request.getCookies()));
 			}
 
-			Method reqMethod = request.getMethod();
+			HttpMethod reqMethod = request.getMethod();
 			urlConnection.setRequestMethod(reqMethod.getName());
 
-			if (Method.POST.equals(reqMethod) || Method.PUT.equals(reqMethod)) {
+			if (HttpMethod.POST.equals(reqMethod) || HttpMethod.PUT.equals(reqMethod)) {
 				urlConnection.setRequestProperty("Content-Length", "0");
 				urlConnection.setDoOutput(true);
 				String bodyCharset = request.getBodyEncoding() == null ? DEFAULT_CHARSET : request.getBodyEncoding();

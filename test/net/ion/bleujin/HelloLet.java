@@ -1,11 +1,12 @@
 package net.ion.bleujin;
 
-import org.restlet.resource.Get;
-import org.restlet.resource.ServerResource;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
 
-public class HelloLet extends ServerResource{
+@Path("/hello")
+public class HelloLet{
 	
-	@Get
+	@GET
 	public String hi(){
 		return "hello" ;
 	}

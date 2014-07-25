@@ -2,18 +2,12 @@
 <classpath>
 	<classpathentry kind="src" output="sbin" path="src"/>
 	<classpathentry kind="src" path="test"/>
-	<classpathentry kind="src" path="perform"/>
-	<classpathentry kind="src" path="webdav"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/3"/>
+	<classpathentry kind="lib" path="lib/aradon311_0.9.jar"/>
+	<classpathentry kind="lib" path="lib/jsr311_fat.jar"/>
 	<classpathentry kind="lib" path="lib/apache_extend_fat.jar"/>
-	<classpathentry kind="lib" path="lib/commons-vfs2-2.0.jar"/>
 	<classpathentry kind="lib" path="lib/iframework_2.3.jar"/>
 	<classpathentry kind="lib" path="lib/netty-3.2.7.Final.jar"/>
-	<classpathentry kind="lib" path="testlib/ApacheJMeter_java.jar"/>
-	<classpathentry kind="lib" path="testlib/ApacheJMeter_core.jar"/>
-	<classpathentry kind="lib" path="lib/rest_fat.jar"/>
-	<classpathentry kind="lib" path="lib/aradon_0.9.jar"/>
-	<classpathentry kind="lib" path="lib/org.simpleframework.jar"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jdk6_45"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -4,26 +4,22 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
+import junit.framework.TestCase;
+import net.ion.bleujin.HelloWorldLet;
 import net.ion.framework.util.InfinityThread;
 import net.ion.nradon.Radon;
 import net.ion.nradon.WebSocketConnection;
 import net.ion.nradon.WebSocketHandler;
 import net.ion.nradon.config.RadonConfiguration;
-import net.ion.nradon.handler.aradon.AradonHandler;
-import net.ion.radon.core.Aradon;
-import net.ion.radon.impl.let.HelloWorldLet;
-import net.ion.radon.util.AradonTester;
-import junit.framework.TestCase;
+import net.ion.radon.core.let.PathHandler;
 
 public class TestRunWebSocket extends TestCase {
 
 	
 	
 	public void testRun() throws Exception {
-		Aradon aradon = AradonTester.create().register("", "/hello", HelloWorldLet.class).getAradon() ;
-		
 		final Radon server = RadonConfiguration.newBuilder(9000)
-			.add("/hello", AradonHandler.create(aradon)) 
+			.add("/hello", new PathHandler(HelloWorldLet.class)) 
 			.add("/websocket/echo", new WebSocketHandler() {
 				private List<WebSocketConnection> conns = new ArrayList<WebSocketConnection>() ;
 				public void onOpen(WebSocketConnection connection) {

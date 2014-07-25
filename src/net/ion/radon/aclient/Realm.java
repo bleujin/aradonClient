@@ -4,7 +4,7 @@ import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-import org.restlet.data.Method;
+import org.jboss.netty.handler.codec.http.HttpMethod;
 
 public class Realm {
 
@@ -22,7 +22,7 @@ public class Realm {
 	private final String nc;
 	private final String cnonce;
 	private final String uri;
-	private final Method method;
+	private final HttpMethod method;
 	private final boolean usePreemptiveAuth;
 	private final String enc;
 	private final String host;
@@ -34,7 +34,7 @@ public class Realm {
 		DIGEST, BASIC, NTLM, SPNEGO, KERBEROS, NONE
 	}
 
-	private Realm(AuthScheme scheme, String principal, String password, String realmName, String nonce, String algorithm, String response, String qop, String nc, String cnonce, String uri, Method method, boolean usePreemptiveAuth, String domain, String enc, String host,
+	private Realm(AuthScheme scheme, String principal, String password, String realmName, String nonce, String algorithm, String response, String qop, String nc, String cnonce, String uri, HttpMethod method, boolean usePreemptiveAuth, String domain, String enc, String host,
 			boolean messageType2Received, String opaque) {
 
 		this.principal = principal;
@@ -114,7 +114,7 @@ public class Realm {
 		return enc;
 	}
 
-	public Method getMethodName() {
+	public HttpMethod getMethodName() {
 		return method;
 	}
 
@@ -213,7 +213,7 @@ public class Realm {
 		private String nc = "00000001";
 		private String cnonce = "";
 		private String uri = "";
-		private Method method = Method.GET;
+		private HttpMethod method = HttpMethod.GET;
 		private boolean usePreemptive = false;
 		private String domain = System.getProperty("http.auth.ntlm.domain", "");
 		private String enc = "UTF-8";
@@ -348,11 +348,11 @@ public class Realm {
 			return this;
 		}
 
-		public Method getMethod() {
+		public HttpMethod getMethod() {
 			return method;
 		}
 
-		public RealmBuilder setMethod(Method method) {
+		public RealmBuilder setMethod(HttpMethod method) {
 			this.method = method;
 			return this;
 		}

@@ -5,10 +5,11 @@ import java.io.FileOutputStream;
 import java.util.concurrent.Semaphore;
 import java.util.concurrent.TimeUnit;
 
+import junit.framework.TestCase;
 import net.ion.framework.util.Debug;
-import net.ion.framework.util.RandomUtil;
 import net.ion.radon.aclient.AsyncHandler;
 import net.ion.radon.aclient.ClientConfig;
+import net.ion.radon.aclient.ClientConfig.Builder;
 import net.ion.radon.aclient.HttpResponseBodyPart;
 import net.ion.radon.aclient.HttpResponseHeaders;
 import net.ion.radon.aclient.HttpResponseStatus;
@@ -16,12 +17,10 @@ import net.ion.radon.aclient.NewClient;
 import net.ion.radon.aclient.Request;
 import net.ion.radon.aclient.RequestBuilder;
 import net.ion.radon.aclient.Response;
-import net.ion.radon.aclient.TestBaseClient;
-import net.ion.radon.aclient.ClientConfig.Builder;
 
-import org.restlet.data.Method;
+import org.jboss.netty.handler.codec.http.HttpMethod;
 
-public class TestFilter extends TestBaseClient{
+public class TestFilter extends TestCase{
 
 	// filter : intercept, transform, decorate, replay transactions
 	
@@ -31,10 +30,6 @@ public class TestFilter extends TestBaseClient{
 		builder.addRequestFilter(new ThrottleFilter(2)) ;
 		
 		NewClient c = NewClient.create(builder.build()) ;
-		
-		for (int i = 0; i < 10; i++) {
-			c.prepareGet(getSlowUri() + "/" + (RandomUtil.nextInt(500) + 200)).execute() ;
-		}
 		c.close();
 	}
 	
@@ -45,17 +40,14 @@ public class TestFilter extends TestBaseClient{
 
 			public <T> FilterContext<T> filter(FilterContext<T> ctx) throws FilterException {
 				if (ctx.getResponseStatus().getStatusCode() == 204){
-					FilterContext<T> result = new FilterContext.FilterContextBuilder<T>(ctx).request(new RequestBuilder(Method.GET).setUrl(getHelloUri()).build()).replayRequest(true).build();
+					FilterContext<T> result = new FilterContext.FilterContextBuilder<T>(ctx).request(new RequestBuilder(HttpMethod.GET).setUrl("/hello").build()).replayRequest(true).build();
 					return result ;
 				}
 				return ctx ;
 			}
 		}) ;
 		
-		NewClient c = newHttpClient(builder.build()) ;
-		Response res = c.prepareGet(getEchoUri()).execute().get() ;
-		assertEquals(200, res.getStatusCode()) ;
-		assertEquals("hello", res.getTextBody()) ;
+		NewClient c = NewClient.create(builder.build()) ;
 	}
 	
 	
@@ -75,7 +67,7 @@ public class TestFilter extends TestBaseClient{
 			}
 		}) ;
 		
-		NewClient c = newHttpClient(builder.build()) ;
+		NewClient c = NewClient.create(builder.build()) ;
 		Response r = c.prepareGet("http://host:port/bigfile.avi").execute(new AsyncHandler<Response>(){
 			private final Response.ResponseBuilder builder = new Response.ResponseBuilder() ;
 			FileOutputStream output = new FileOutputStream(file) ;

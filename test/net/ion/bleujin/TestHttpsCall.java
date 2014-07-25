@@ -2,15 +2,8 @@ package net.ion.bleujin;
 
 import java.io.IOException;
 
-import org.restlet.data.Method;
-
 import junit.framework.TestCase;
-import net.ion.framework.util.Debug;
-import net.ion.radon.aclient.ClientConfig;
-import net.ion.radon.aclient.ClientConfigBean;
 import net.ion.radon.aclient.NewClient;
-import net.ion.radon.aclient.Request;
-import net.ion.radon.aclient.RequestBuilder;
 import net.ion.radon.aclient.Response;
 
 public class TestHttpsCall extends TestCase{

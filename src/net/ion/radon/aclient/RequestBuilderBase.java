@@ -18,12 +18,12 @@ import net.ion.framework.util.StringUtil;
 import net.ion.radon.aclient.Request.EntityWriter;
 import net.ion.radon.aclient.util.UTF8UrlEncoder;
 
-import org.restlet.data.Method;
+import org.jboss.netty.handler.codec.http.HttpMethod;
 
 public abstract class RequestBuilderBase<T extends RequestBuilderBase<T>> {
 
 	private static final class RequestImpl implements Request {
-		private Method method;
+		private HttpMethod method;
 		private String url = null;
 		private InetAddress address = null;
 		private InetAddress localAddress = null;
@@ -82,7 +82,7 @@ public abstract class RequestBuilderBase<T extends RequestBuilderBase<T>> {
 			}
 		}
 
-		public Method getMethod() {
+		public HttpMethod getMethod() {
 			return method;
 		}
 
@@ -265,7 +265,7 @@ public abstract class RequestBuilderBase<T extends RequestBuilderBase<T>> {
 	protected final RequestImpl request;
 	protected boolean useRawUrl = false;
 
-	protected RequestBuilderBase(Class<T> derived, Method method, boolean rawUrls) {
+	protected RequestBuilderBase(Class<T> derived, HttpMethod method, boolean rawUrls) {
 		this.derived = derived;
 		request = new RequestImpl(rawUrls);
 		request.method = method;
@@ -394,7 +394,7 @@ public abstract class RequestBuilderBase<T extends RequestBuilderBase<T>> {
 	}
 
 	private void checkIfBodyAllowed() {
-		if (Method.GET.equals(request.method) || Method.HEAD.equals(request.method)) {
+		if (HttpMethod.GET.equals(request.method) || HttpMethod.HEAD.equals(request.method)) {
 			throw new IllegalArgumentException("Can NOT set Body on HTTP Request Method GET nor HEAD.");
 		}
 	}
@@ -528,7 +528,7 @@ public abstract class RequestBuilderBase<T extends RequestBuilderBase<T>> {
 		return derived.cast(this);
 	}
 
-	public T setMethod(Method method) {
+	public T setMethod(HttpMethod method) {
 		request.method = method;
 		return derived.cast(this);
 	}
@@ -554,8 +554,8 @@ public abstract class RequestBuilderBase<T extends RequestBuilderBase<T>> {
 		return request;
 	}
 
-	private boolean allowBody(Method method) {
-		if (method.equals(Method.GET) || method.equals(Method.OPTIONS) && method.equals(Method.TRACE) && method.equals(Method.HEAD)) {
+	private boolean allowBody(HttpMethod method) {
+		if (method.equals(HttpMethod.GET) || method.equals(HttpMethod.OPTIONS) && method.equals(HttpMethod.TRACE) && method.equals(HttpMethod.HEAD)) {
 			return false;
 		} else {
 			return true;

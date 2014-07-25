@@ -25,10 +25,7 @@ import net.ion.radon.aclient.websocket.WebSocketUpgradeHandler;
 import net.ion.radon.aclient.websocket.WebSocketUpgradeHandler.Builder;
 
 import org.apache.commons.io.output.ByteArrayOutputStream;
-import org.restlet.data.Method;
-import org.restlet.data.Status;
-import org.restlet.resource.ResourceException;
-
+import org.jboss.netty.handler.codec.http.HttpMethod;
 // This project is an adaptation of the Apache AsyncHttpClient implementation
 
 public class NewClient implements Closeable {
@@ -63,7 +60,7 @@ public class NewClient implements Closeable {
 
 		protected String baseURL;
 
-		private BoundRequestBuilder(Method method, boolean useRawUrl) {
+		private BoundRequestBuilder(HttpMethod method, boolean useRawUrl) {
 			super(BoundRequestBuilder.class, method, useRawUrl);
 		}
 
@@ -237,31 +234,31 @@ public class NewClient implements Closeable {
 	}
 
 	public BoundRequestBuilder prepareGet(String url) {
-		return requestBuilder(Method.GET, url);
+		return requestBuilder(HttpMethod.GET, url);
 	}
 
 	public BoundRequestBuilder prepareConnect(String url) {
-		return requestBuilder(Method.CONNECT, url);
+		return requestBuilder(HttpMethod.CONNECT, url);
 	}
 
 	public BoundRequestBuilder prepareOptions(String url) {
-		return requestBuilder(Method.OPTIONS, url);
+		return requestBuilder(HttpMethod.OPTIONS, url);
 	}
 
 	public BoundRequestBuilder prepareHead(String url) {
-		return requestBuilder(Method.HEAD, url);
+		return requestBuilder(HttpMethod.HEAD, url);
 	}
 
 	public BoundRequestBuilder preparePost(String url) {
-		return requestBuilder(Method.POST, url);
+		return requestBuilder(HttpMethod.POST, url);
 	}
 
 	public BoundRequestBuilder preparePut(String url) {
-		return requestBuilder(Method.PUT, url);
+		return requestBuilder(HttpMethod.PUT, url);
 	}
 
 	public BoundRequestBuilder prepareDelete(String url) {
-		return requestBuilder(Method.DELETE, url);
+		return requestBuilder(HttpMethod.DELETE, url);
 	}
 
 	public BoundRequestBuilder prepareRequest(Request request) {
@@ -328,7 +325,7 @@ public class NewClient implements Closeable {
 		}
 	}
 
-	protected BoundRequestBuilder requestBuilder(Method method, String url) {
+	protected BoundRequestBuilder requestBuilder(HttpMethod method, String url) {
 		return new BoundRequestBuilder(method, config.isUseRawUrl()).setUrl(url).setSignatureCalculator(signatureCalculator);
 	}
 
@@ -376,19 +373,19 @@ class HttpSerialRequest implements ISerialAsyncRequest {
 	
 
 	public <V> ListenableFuture<V> delete(Class<? extends V> clz) {
-		return handle(Method.DELETE, "", clz);
+		return handle(HttpMethod.DELETE, "", clz);
 	}
 
 	public <V> ListenableFuture<V> get(Class<? extends V> clz) {
-		return handle(Method.GET, "", clz);
+		return handle(HttpMethod.GET, "", clz);
 	}
 
-	public <T, V> ListenableFuture<V> handle(Method method, T arg, final Class<? extends V> clz) {
+	public <T, V> ListenableFuture<V> handle(HttpMethod method, T arg, final Class<? extends V> clz) {
 		builder.setMethod(method);
 		builder.addHeader("Content-Type", "application/x-java-serialized-object") ;
 
 		try {
-			if (!(method.equals(Method.GET) || method.equals(Method.DELETE) || method.equals(Method.HEAD))) {
+			if (!(method.equals(HttpMethod.GET) || method.equals(HttpMethod.DELETE) || method.equals(HttpMethod.HEAD))) {
 				ByteArrayOutputStream bout = new ByteArrayOutputStream();
 				ObjectOutputStream output = new ObjectOutputStream(bout);
 				output.writeObject(arg);
@@ -430,11 +427,11 @@ class HttpSerialRequest implements ISerialAsyncRequest {
 	}
 
 	public <T, V> ListenableFuture<V> post(T arg, Class<? extends V> clz) {
-		return handle(Method.POST, arg, clz);
+		return handle(HttpMethod.POST, arg, clz);
 	}
 
 	public <T, V> ListenableFuture<V> put(T arg, Class<? extends V> clz) {
-		return handle(Method.PUT, arg, clz);
+		return handle(HttpMethod.PUT, arg, clz);
 	}
 
 }

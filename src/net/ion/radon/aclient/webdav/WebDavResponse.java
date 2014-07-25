@@ -9,8 +9,8 @@ import java.util.List;
 import net.ion.radon.aclient.Cookie;
 import net.ion.radon.aclient.FluentCaseInsensitiveStringsMap;
 import net.ion.radon.aclient.Response;
+import net.ion.radon.aclient.Status;
 
-import org.restlet.data.Status;
 import org.w3c.dom.Document;
 
 public class WebDavResponse implements Response {

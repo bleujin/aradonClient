@@ -8,7 +8,7 @@ import java.net.InetAddress;
 import java.util.Collection;
 import java.util.List;
 
-import org.restlet.data.Method;
+import org.jboss.netty.handler.codec.http.HttpMethod;
 
 public interface Request {
 
@@ -16,7 +16,7 @@ public interface Request {
 		public void writeEntity(OutputStream out) throws IOException;
 	}
 
-	public Method getMethod();
+	public HttpMethod getMethod();
 
 	public String getUrl();
 

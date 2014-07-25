@@ -14,7 +14,7 @@ import net.ion.radon.aclient.util.Base64;
 import net.ion.radon.aclient.util.UTF8Codec;
 import net.ion.radon.aclient.util.UTF8UrlEncoder;
 
-import org.restlet.data.Method;
+import org.jboss.netty.handler.codec.http.HttpMethod;
 
 public class OAuthSignatureCalculator implements SignatureCalculator {
 	public final static String HEADER_AUTHORIZATION = "Authorization";
@@ -50,7 +50,7 @@ public class OAuthSignatureCalculator implements SignatureCalculator {
 	// @Override // silly 1.5; doesn't allow this for interfaces
 
 	public void calculateAndAddSignature(String baseURL, Request request, RequestBuilderBase<?> requestBuilder) {
-		Method method = request.getMethod(); // POST etc
+		HttpMethod method = request.getMethod(); // POST etc
 		String nonce = generateNonce();
 		long timestamp = System.currentTimeMillis() / 1000L;
 		String signature = calculateSignature(method, baseURL, timestamp, nonce, request.getParams(), request.getQueryParams());
@@ -58,7 +58,7 @@ public class OAuthSignatureCalculator implements SignatureCalculator {
 		requestBuilder.setHeader(HEADER_AUTHORIZATION, headerValue);
 	}
 
-	public String calculateSignature(Method method, String baseURL, long oauthTimestamp, String nonce, FluentStringsMap formParams, FluentStringsMap queryParams) {
+	public String calculateSignature(HttpMethod method, String baseURL, long oauthTimestamp, String nonce, FluentStringsMap formParams, FluentStringsMap queryParams) {
 		StringBuilder signedText = new StringBuilder(100);
 		signedText.append(method.getName()); // POST / GET etc (nothing to URL encode)
 		signedText.append('&');

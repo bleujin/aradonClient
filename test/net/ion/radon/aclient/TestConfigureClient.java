@@ -1,8 +1,9 @@
 package net.ion.radon.aclient;
 
+import junit.framework.TestCase;
 import net.ion.radon.aclient.ClientConfig.Builder;
 
-public class TestConfigureClient extends TestBaseClient{
+public class TestConfigureClient extends TestCase{
 
 	public void testConfig() throws Exception {
 		Builder builder = new ClientConfig.Builder() ;
@@ -10,7 +11,7 @@ public class TestConfigureClient extends TestBaseClient{
 			.setRequestTimeoutInMs(3000)  // Timeout
 			.setFollowRedirects(true) ;
 		
-		NewClient client = newHttpClient(builder.build()) ;
+		NewClient client = NewClient.create(builder.build()) ;
 	}
 	
 	public void testLimitConnection() throws Exception {

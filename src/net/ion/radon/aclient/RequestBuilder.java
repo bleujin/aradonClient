@@ -6,19 +6,20 @@ import java.util.Map;
 
 import net.ion.radon.aclient.Request.EntityWriter;
 
-import org.restlet.data.Method;
+import org.jboss.netty.handler.codec.http.HttpMethod;
+
 
 public class RequestBuilder extends RequestBuilderBase<RequestBuilder> {
 
 	public RequestBuilder() {
-		super(RequestBuilder.class, Method.GET, false);
+		super(RequestBuilder.class, HttpMethod.GET, false);
 	}
 
-	public RequestBuilder(Method method) {
+	public RequestBuilder(HttpMethod method) {
 		super(RequestBuilder.class, method, false);
 	}
 
-	public RequestBuilder(Method method, boolean useRawUrl) {
+	public RequestBuilder(HttpMethod method, boolean useRawUrl) {
 		super(RequestBuilder.class, method, useRawUrl);
 	}
 
@@ -117,7 +118,7 @@ public class RequestBuilder extends RequestBuilderBase<RequestBuilder> {
 	}
 
 	@Override
-	public RequestBuilder setMethod(Method method) {
+	public RequestBuilder setMethod(HttpMethod method) {
 		return super.setMethod(method);
 	}
 
