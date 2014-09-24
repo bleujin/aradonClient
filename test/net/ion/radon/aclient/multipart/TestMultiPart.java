@@ -43,7 +43,8 @@ public class TestMultiPart extends TestCase {
 		radon.stop().get() ;
 		super.tearDown();
 	}
-	
+
+	// http://i.stack.imgur.com/YJYPm.png
 	public void testUpload() throws Exception {
 		RequestBuilder builder = new RequestBuilder().setUrl("http://localhost:9000/file/upload").setMethod(HttpMethod.POST);
 		builder.addBodyPart(new StringPart("name", "value")).addBodyPart(new FilePart("myfile", new File("resource/hello.txt")));

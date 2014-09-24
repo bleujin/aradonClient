@@ -97,9 +97,12 @@
 		<echo>Copy to MongoSearch</echo>
 		<copy file="publish/aclient_${version.number}.${build.number}.jar" todir="../MongoSearch/lib/" />
 
-		<echo>Copy to ToonStory</echo>
-		<copy file="publish/aclient_${version.number}.${build.number}.jar" todir="../../workspace/talkserver/lib/ref" />
-		<copy file="publish/aclient_${version.number}.${build.number}.jar" todir="../../workspace/ToonServer/alone/lib/" />
-	</target>
+		<echo>Copy to TalkServer</echo>
+		<copy file="publish/aclient_${version.number}.${build.number}.jar" todir="../talkserver/lib/ref" />
+
+		<echo>Copy to ICrawler</echo>
+		<copy file="publish/aclient_${version.number}.${build.number}.jar" todir="../ICrawler/lib/ref" />
+				
+		</target>
 	
 </project>
